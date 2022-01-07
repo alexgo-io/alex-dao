@@ -16,12 +16,11 @@
 (define-constant err-not-token-owner (err u4))
 
 (define-fungible-token edg-token)
-(define-fungible-token edg-token-locked)
 
-(define-data-var token-name (string-ascii 32) "ExecutorDAO Governance Token")
-(define-data-var token-symbol (string-ascii 10) "EDG")
+(define-data-var token-name (string-ascii 32) "ALEX Governance Token")
+(define-data-var token-symbol (string-ascii 10) "agt")
 (define-data-var token-uri (optional (string-utf8 256)) none)
-(define-data-var token-decimals uint u6)
+(define-data-var token-decimals uint u8)
 
 ;; --- Authorisation check
 
@@ -41,19 +40,11 @@
 )
 
 (define-public (edg-lock (amount uint) (owner principal))
-	(begin
-		(try! (is-dao-or-extension))
-		(try! (ft-burn? edg-token amount owner))
-		(ft-mint? edg-token-locked amount owner)
-	)
+	(edg-mint amount owner)
 )
 
 (define-public (edg-unlock (amount uint) (owner principal))
-	(begin
-		(try! (is-dao-or-extension))
-		(try! (ft-burn? edg-token-locked amount owner))
-		(ft-mint? edg-token amount owner)
-	)
+	(edg-burn amount owner)
 )
 
 (define-public (edg-mint (amount uint) (recipient principal))
@@ -135,11 +126,11 @@
 )
 
 (define-read-only (get-balance (who principal))
-	(ok (+ (ft-get-balance edg-token who) (ft-get-balance edg-token-locked who)))
+	(ok (ft-get-balance edg-token who))
 )
 
 (define-read-only (get-total-supply)
-	(ok (+ (ft-get-supply edg-token) (ft-get-supply edg-token-locked)))
+	(ok (ft-get-supply edg-token))
 )
 
 (define-read-only (get-token-uri)
@@ -157,7 +148,7 @@
 )
 
 (define-read-only (edg-get-locked (owner principal))
-	(ok (ft-get-balance edg-token-locked owner))
+	(get-balance owner)
 )
 
 ;; --- Extension callback

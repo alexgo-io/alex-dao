@@ -1,4 +1,4 @@
-;; Title: EDE001 Proposal Voting
+;; Title: age001 Proposal Voting
 ;; Author: Marvin Janssen
 ;; Depends-On: EDE000
 ;; Synopsis:
@@ -26,8 +26,9 @@
 (define-constant err-no-votes-to-return (err u3008))
 (define-constant err-end-block-height-not-reached (err u3009))
 (define-constant err-disabled (err u3010))
+(define-constant err-transfer-failed (err u3011))
 
-(define-data-var governance-token-principal principal .ede000-governance-token)
+(define-data-var governance-token-principal principal .age000-governance-token)
 
 (define-map proposals
 	principal
@@ -115,6 +116,9 @@
 			)
 		)
 		(print {event: "vote", proposal: proposal, voter: tx-sender, for: for, amount: amount})
+		
+		;; transfer $ALEX to DAO and mint AGT
+		(unwrap! (contract-call? .token-alex transfer amount tx-sender (as-contract tx-sender) none) err-transfer-failed)
 		(contract-call? governance-token edg-lock amount tx-sender)
 	)
 )
@@ -145,9 +149,13 @@
 			(token-principal (contract-of governance-token))
 			(proposal-data (unwrap! (map-get? proposals proposal-principal) err-unknown-proposal))
 			(votes (unwrap! (map-get? member-total-votes {proposal: proposal-principal, voter: tx-sender, governance-token: token-principal}) err-no-votes-to-return))
+			(recipient tx-sender)
 		)
 		(asserts! (get concluded proposal-data) err-proposal-not-concluded)
 		(map-delete member-total-votes {proposal: proposal-principal, voter: tx-sender, governance-token: token-principal})
+
+		;; transfer $ALEX to recipient and burn AGT
+		(as-contract (unwrap! (contract-call? .token-alex transfer votes tx-sender recipient none) err-transfer-failed))
 		(contract-call? governance-token edg-unlock votes tx-sender)
 	)
 )
