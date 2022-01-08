@@ -34,8 +34,8 @@
 ;; @restricted Approved-Contracts/Contract-Owner
 ;; @params sender
 ;; @returns (response bool)
-(define-private (check-is-approved (sender principal))
-  (ok (asserts! (default-to false (map-get? approved-contracts sender)) err-unauthorised))
+(define-private (check-is-approved)
+  (ok (asserts! (default-to false (map-get? approved-contracts tx-sender)) err-unauthorised))
 )
 
 ;; --- Internal DAO functions
@@ -66,15 +66,15 @@
 )
 
 (define-public (edg-mint (amount uint) (recipient principal))
-	(begin
-		(or (try! (is-dao-or-extension)) (try! (check-is-approved contract-caller)))
+	(begin		
+		(asserts! (or (is-ok (is-dao-or-extension)) (is-ok (check-is-approved))) err-unauthorised)
 		(ft-mint? alex amount recipient)
 	)
 )
 
 (define-public (edg-burn (amount uint) (owner principal))
 	(begin
-		(or (try! (is-dao-or-extension)) (try! (check-is-approved contract-caller)))
+		(asserts! (or (is-ok (is-dao-or-extension)) (is-ok (check-is-approved))) err-unauthorised)
 		(ft-burn? alex amount owner)
 	)
 )
@@ -269,7 +269,10 @@
   (burn (fixed-to-decimals amount) sender)
 )
 
-;; (map-set approved-contracts .alex-reserve-pool true)
+(map-set approved-contracts .alex-reserve-pool true)
+(map-set approved-contracts .exchange true)
+(map-set approved-contracts .faucet true)
+(map-set approved-contracts tx-sender true)
 
 
 
