@@ -1,15 +1,3 @@
-;; Title: EDP003 Whitelist Escrow NFT
-;; Author: Marvin Janssen
-;; Synopsis:
-;; An example proposal to illustrate how ExecutorDAO can manage external
-;; ownable contracts.
-;; Description:
-;; ExecutorDAO is well-equiped to manage external contracts feature have
-;; some form of ownership. This proposal updates the whitelist of an
-;; example escrow contract that is owned by the ExecutorDAO contract.
-;; Note that the ExecutorDAO contract must be the owner of nft-escrow
-;; for this proposal to be executed.
-
 (impl-trait .proposal-trait.proposal-trait)
 
 (define-constant fee-to-address .alex-vault)
@@ -23,7 +11,7 @@
 
 (define-public (execute (sender principal))
 	(begin
-		(try! (contract-call? .alex-launchpad .token-alex .lottery-ido-alex fee-to-address amount-per-ticket wstx-per-ticket-in-fixed registration-start registration-end claim-end activation-threshold))
-		(contract-call? .alex-launchpad add-to-position .token-alex tickets)
+		(try! (contract-call? .alex-launchpad create-pool .age000-governance-token .lottery-ido-alex fee-to-address amount-per-ticket wstx-per-ticket-in-fixed registration-start registration-end claim-end activation-threshold))
+		(contract-call? .alex-launchpad add-to-position .age000-governance-token tickets)
 	)
 )
