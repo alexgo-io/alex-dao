@@ -5,6 +5,7 @@ import { Clarinet, Tx, Chain, Account, types } from 'https://deno.land/x/clarine
 const daoAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.executor-dao";
 const bootstrapAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp000-bootstrap";
 const agp002Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp002-launchpad-alex";
+const age000Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.age000-governance-token";
 
 class DAO {
     chain: Chain;
@@ -51,5 +52,9 @@ Clarinet.test({
 
         result = await DAOTest.executiveAction(deployer, agp002Address);
         result.expectOk();
+
+        let call = chain.callReadOnlyFn("alex-launchpad", "get-listing-details", [ types.principal(age000Address)], deployer.address);
+        call.result.expectSome();
+      }
     },    
-});
+);

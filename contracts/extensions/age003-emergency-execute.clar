@@ -22,6 +22,7 @@
 (define-constant err-already-executed (err u3002))
 (define-constant err-sunset-height-reached (err u3003))
 (define-constant err-sunset-height-in-past (err u3004))
+(define-constant err-invalid-signals (err u3005))
 
 (define-map executive-team principal bool)
 (define-map executive-action-signals {proposal: principal, team-member: principal} bool)
@@ -55,6 +56,7 @@
 (define-public (set-signals-required (new-requirement uint))
 	(begin
 		(try! (is-dao-or-extension))
+		(asserts! (> new-requirement u0) err-invalid-signals)
 		(ok (var-set executive-signals-required new-requirement))
 	)
 )
