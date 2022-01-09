@@ -1,4 +1,4 @@
-;; Title: EDP002 Kill Emergency Execute
+;; Title: AGP001 Kill Emergency Execute
 ;; Author: Marvin Janssen
 ;; Synopsis:
 ;; This proposal disables extension "age003 Emergency Execute".
