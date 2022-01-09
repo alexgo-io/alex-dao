@@ -1,4 +1,5 @@
 
+;; Title: AGP000 Bootstrap
 ;; Author: Marvin Janssen
 ;; Synopsis:
 ;; Boot proposal that sets the governance token, DAO parameters, and extensions, and
@@ -6,8 +7,8 @@
 ;; Description:
 ;; Mints the initial supply of governance tokens and enables the the following 
 ;; extensions: "age000 Governance Token", "age001 Proposal Voting",
-;; "age002 Proposal Submission", "age003 Emergency Proposals",
-;; "age004 Emergency Execute".
+;; "age002 Emergency Proposals",
+;; "age003 Emergency Execute".
 
 (impl-trait .proposal-trait.proposal-trait)
 

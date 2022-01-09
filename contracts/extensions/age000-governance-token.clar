@@ -1,4 +1,4 @@
-;; Title: EDE000 Governance Token
+;; Title: AGE000 Governance Token
 ;; Author: Marvin Janssen
 ;; Depends-On: 
 ;; Synopsis:

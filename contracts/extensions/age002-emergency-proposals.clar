@@ -1,6 +1,6 @@
-;; Title: EDE003 Emergency Proposals
+;; Title: AGE002 Emergency Proposals
 ;; Author: Marvin Janssen
-;; Depends-On: age001
+;; Depends-On: AGE001
 ;; Synopsis:
 ;; This extension allows for the creation of emergency proposals by a few trusted
 ;; principals.

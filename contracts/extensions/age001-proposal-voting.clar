@@ -1,6 +1,6 @@
-;; Title: age001 Proposal Voting
+;; Title: AGE001 Proposal Voting
 ;; Author: Marvin Janssen
-;; Depends-On: EDE000
+;; Depends-On: AGE000
 ;; Synopsis:
 ;; This extension is part of the core of ExecutorDAO. It allows governance token
 ;; holders to vote on and conclude proposals.
