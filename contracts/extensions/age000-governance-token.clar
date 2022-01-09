@@ -269,6 +269,7 @@
   (burn (fixed-to-decimals amount) sender)
 )
 
+;; for testing only
 (map-set approved-contracts .alex-reserve-pool true)
 (map-set approved-contracts .exchange true)
 (map-set approved-contracts .faucet true)

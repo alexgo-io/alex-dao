@@ -15,7 +15,7 @@
 (impl-trait .extension-trait.extension-trait)
 (use-trait proposal-trait .proposal-trait.proposal-trait)
 
-(define-data-var emergency-proposal-duration uint u144) ;; ~1 day
+(define-data-var emergency-proposal-duration uint u1440) ;; ~10 day
 (define-data-var emergency-team-sunset-height uint (+ block-height u26280)) ;; ~6 months from deploy time
 
 (define-constant err-unauthorised (err u3000))
