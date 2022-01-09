@@ -1,4 +1,4 @@
-;; Title: EDE001 Proposal Voting
+;; Title: age001 Proposal Voting
 ;; Author: Marvin Janssen
 ;; Depends-On: EDE000
 ;; Synopsis:
@@ -26,8 +26,9 @@
 (define-constant err-no-votes-to-return (err u3008))
 (define-constant err-end-block-height-not-reached (err u3009))
 (define-constant err-disabled (err u3010))
+(define-constant err-transfer-failed (err u3011))
 
-(define-data-var governance-token-principal principal .ede000-governance-token)
+(define-data-var governance-token-principal principal .age000-governance-token)
 
 (define-map proposals
 	principal

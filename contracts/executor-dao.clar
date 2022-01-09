@@ -64,7 +64,10 @@
 ;; --- Bootstrap
 
 (define-public (construct (proposal <proposal-trait>))
-	(let ((sender tx-sender))
+	(let 
+		(
+			(sender tx-sender)
+		)
 		(asserts! (is-eq sender (var-get executive)) err-unauthorised)
 		(var-set executive (as-contract tx-sender))
 		(as-contract (execute proposal sender))

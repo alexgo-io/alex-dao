@@ -3,45 +3,30 @@ name = "executor-dao"
 requirements = []
 costs_version = 2
 
-[contracts.ede000-governance-token]
-path = "contracts/extensions/ede000-governance-token.clar"
-depends_on = ["executor-dao", "governance-token-trait", "sip010-ft-trait"]
+[contracts.age000-governance-token]
+path = "contracts/extensions/age000-governance-token.clar"
+depends_on = ["executor-dao", "governance-token-trait", "trait-sip-010"]
 
-[contracts.ede001-proposal-voting]
-path = "contracts/extensions/ede001-proposal-voting.clar"
-depends_on = ["executor-dao", "proposal-trait", "extension-trait", "governance-token-trait", "ede000-governance-token"]
+[contracts.age001-proposal-voting]
+path = "contracts/extensions/age001-proposal-voting.clar"
+depends_on = ["executor-dao", "proposal-trait", "extension-trait", "governance-token-trait", "age000-governance-token"]
 
-[contracts.ede002-proposal-submission]
-path = "contracts/extensions/ede002-proposal-submission.clar"
-depends_on = ["executor-dao", "extension-trait", "ede001-proposal-voting"]
+[contracts.age002-emergency-proposals]
+path = "contracts/extensions/age002-emergency-proposals.clar"
+depends_on = ["executor-dao", "extension-trait", "age001-proposal-voting"]
 
-[contracts.ede003-emergency-proposals]
-path = "contracts/extensions/ede003-emergency-proposals.clar"
-depends_on = ["executor-dao", "extension-trait", "ede001-proposal-voting"]
+[contracts.age003-emergency-execute]
+path = "contracts/extensions/age003-emergency-execute.clar"
+depends_on = ["executor-dao", "extension-trait", "age001-proposal-voting"]
 
-[contracts.ede004-emergency-execute]
-path = "contracts/extensions/ede004-emergency-execute.clar"
-depends_on = ["executor-dao", "extension-trait", "ede001-proposal-voting"]
+[contracts.agp000-bootstrap]
+path = "contracts/proposals/agp000-bootstrap.clar"
 
-[contracts.ede005-dev-fund]
-path = "contracts/extensions/ede005-dev-fund.clar"
-depends_on = ["executor-dao", "extension-trait", "ede000-governance-token"]
+depends_on = ["executor-dao", "proposal-trait", "extension-trait", "age000-governance-token", "age001-proposal-voting", "age002-emergency-proposals", "age003-emergency-execute"]
 
-[contracts.edp000-bootstrap]
-path = "contracts/proposals/edp000-bootstrap.clar"
-depends_on = ["executor-dao", "proposal-trait", "extension-trait", "ede000-governance-token", "ede001-proposal-voting", "ede002-proposal-submission", "ede003-emergency-proposals", "ede004-emergency-execute"]
-
-[contracts.edp001-dev-fund]
-path = "contracts/proposals/edp001-dev-fund.clar"
-depends_on = ["ede000-governance-token", "executor-dao"]
-
-[contracts.edp002-kill-emergency-execute]
-path = "contracts/proposals/edp002-kill-emergency-execute.clar"
-depends_on = ["ede004-emergency-execute", "executor-dao"]
-
-[contracts.edp003-whitelist-escrow-nft]
-path = "contracts/proposals/edp003-whitelist-escrow-nft.clar"
-depends_on = ["proposal-trait", "nft-escrow"]
+[contracts.agp001-kill-emergency-execute]
+path = "contracts/proposals/agp001-kill-emergency-execute.clar"
+depends_on = ["age003-emergency-execute", "executor-dao"]
 
 [contracts.executor-dao]
 path = "contracts/executor-dao.clar"
@@ -55,10 +40,6 @@ depends_on = []
 path = "contracts/traits/governance-token-trait.clar"
 depends_on = []
 
-[contracts.nft-escrow]
-path = "contracts/external/nft-escrow.clar"
-depends_on = ["ownable-trait"]
-
 [contracts.ownable-trait]
 path = "contracts/traits/ownable-trait.clar"
 depends_on = []
@@ -70,3 +51,49 @@ depends_on = []
 [contracts.sip010-ft-trait]
 path = "contracts/traits/sip010-ft-trait.clar"
 depends_on = []
+
+[contracts.trait-ownable]
+path = "alex-v1/clarity/contracts/traits/trait-ownable.clar"
+depends_on = [ ]
+
+[contracts.trait-sip-010]
+path = "alex-v1/clarity/contracts/traits/trait-sip-010.clar"
+depends_on = [ ]
+
+[contracts.trait-semi-fungible]
+path = "alex-v1/clarity/contracts/traits/trait-semi-fungible.clar"
+depends_on = [ ]
+
+[contracts.trait-flash-loan-user]
+path = "alex-v1/clarity/contracts/traits/trait-flash-loan-user.clar"
+depends_on = [ "trait-sip-010" ]
+
+[contracts.trait-vault]
+path = "alex-v1/clarity/contracts/traits/trait-vault.clar"
+depends_on = [ "trait-sip-010", "trait-flash-loan-user" ]
+
+[contracts.alex-vault]
+path = "alex-v1/clarity/contracts/alex-vault.clar"
+depends_on = [
+  "trait-vault",
+  "trait-sip-010",
+  "trait-flash-loan-user",
+  "trait-ownable",
+  "trait-semi-fungible"
+]
+
+[contracts.token-wstx]
+path = "alex-v1/clarity/contracts/wrapped-token/token-wstx.clar"
+depends_on = [ "trait-ownable", "alex-vault", "trait-sip-010" ]
+
+[contracts.alex-launchpad]
+path = "alex-v1/clarity/contracts/pool/alex-launchpad.clar"
+depends_on = [ "trait-ownable", "trait-sip-010", "token-wstx" ]
+
+[contracts.lottery-ido-alex]
+path = "alex-v1/clarity/contracts/lottery-tokens/lottery-ido-alex.clar"
+depends_on = ["trait-ownable", "trait-sip-010"]
+
+[contracts.agp002-launchpad-alex]
+path = "contracts/proposals/agp002-launchpad-alex.clar"
+depends_on = ["proposal-trait", "alex-launchpad", "lottery-ido-alex", "age000-governance-token"]

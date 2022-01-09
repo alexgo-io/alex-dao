@@ -15,13 +15,14 @@
 (impl-trait .extension-trait.extension-trait)
 (use-trait proposal-trait .proposal-trait.proposal-trait)
 
-(define-data-var executive-team-sunset-height uint (+ block-height u4380)) ;; ~1 month from deploy time
+(define-data-var executive-team-sunset-height uint (+ block-height u13140)) ;; ~3 month from deploy time
 
 (define-constant err-unauthorised (err u3000))
 (define-constant err-not-executive-team-member (err u3001))
 (define-constant err-already-executed (err u3002))
 (define-constant err-sunset-height-reached (err u3003))
 (define-constant err-sunset-height-in-past (err u3004))
+(define-constant err-invalid-signals (err u3005))
 
 (define-map executive-team principal bool)
 (define-map executive-action-signals {proposal: principal, team-member: principal} bool)
