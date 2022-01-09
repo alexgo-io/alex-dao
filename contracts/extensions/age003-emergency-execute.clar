@@ -56,7 +56,6 @@
 (define-public (set-signals-required (new-requirement uint))
 	(begin
 		(try! (is-dao-or-extension))
-		(asserts! (> new-requirement u0) err-invalid-signals)
 		(ok (var-set executive-signals-required new-requirement))
 	)
 )

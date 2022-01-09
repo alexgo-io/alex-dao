@@ -1,7 +1,7 @@
 [project]
 name = "executor-dao"
 requirements = []
-costs_version = 1
+costs_version = 2
 
 [contracts.age000-governance-token]
 path = "contracts/extensions/age000-governance-token.clar"
