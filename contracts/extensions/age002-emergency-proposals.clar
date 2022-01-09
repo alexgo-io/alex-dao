@@ -1,5 +1,5 @@
 ;; Title: AGE002 Emergency Proposals
-;; Author: Marvin Janssen
+;; Author: Marvin Janssen / ALEX Dev Team
 ;; Depends-On: AGE001
 ;; Synopsis:
 ;; This extension allows for the creation of emergency proposals by a few trusted

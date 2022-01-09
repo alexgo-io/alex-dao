@@ -1,5 +1,5 @@
 ;; Title: AGE003 Emergency Execute
-;; Author: Marvin Janssen
+;; Author: Marvin Janssen / ALEX Dev Team
 ;; Depends-On: 
 ;; Synopsis:
 ;; This extension allows a small number of very trusted principals to immediately

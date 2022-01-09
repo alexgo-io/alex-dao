@@ -1,6 +1,6 @@
 
 ;; Title: AGP000 Bootstrap
-;; Author: Marvin Janssen
+;; Author: Marvin Janssen / ALEX Dev Team
 ;; Synopsis:
 ;; Boot proposal that sets the governance token, DAO parameters, and extensions, and
 ;; mints the initial governance tokens.

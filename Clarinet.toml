@@ -94,6 +94,6 @@ depends_on = [ "trait-ownable", "trait-sip-010", "token-wstx" ]
 path = "alex-v1/clarity/contracts/lottery-tokens/lottery-ido-alex.clar"
 depends_on = ["trait-ownable", "trait-sip-010"]
 
-[contracts.agp002-launchpad-alex]
-path = "contracts/proposals/agp002-launchpad-alex.clar"
+[contracts.agp003-launchpad-alex]
+path = "contracts/proposals/agp003-launchpad-alex.clar"
 depends_on = ["proposal-trait", "alex-launchpad", "lottery-ido-alex", "age000-governance-token"]

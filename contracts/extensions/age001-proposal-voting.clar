@@ -1,5 +1,5 @@
 ;; Title: AGE001 Proposal Voting
-;; Author: Marvin Janssen
+;; Author: Marvin Janssen / ALEX Dev Team
 ;; Depends-On: AGE000
 ;; Synopsis:
 ;; This extension is part of the core of ExecutorDAO. It allows governance token

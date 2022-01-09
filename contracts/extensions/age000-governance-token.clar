@@ -1,5 +1,5 @@
 ;; Title: AGE000 Governance Token
-;; Author: Marvin Janssen
+;; Author: Marvin Janssen / ALEX Dev Team
 ;; Depends-On: 
 ;; Synopsis:
 ;; This extension defines the governance token of ExecutorDAO.
