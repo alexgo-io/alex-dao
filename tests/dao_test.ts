@@ -235,7 +235,7 @@ Clarinet.test({
       [],
       deployer.address
     );
-    call.result.expectUint(20);
+    call.result.expectUint(1);
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -243,7 +243,7 @@ Clarinet.test({
       [],
       deployer.address
     );
-    call.result.expectUint(175);
+    call.result.expectUint(525);
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
