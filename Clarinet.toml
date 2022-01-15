@@ -481,3 +481,11 @@ depends_on = ["age000-governance-token", "token-wstx", "fixed-weight-pool", "fwp
 [contracts.agp006-flash-loan-fee]
 path = "alex-dao-proposals/agp006-flash-loan-fee.clar"
 depends_on = ["alex-vault"]
+
+[contracts.agp007-staking-default]
+path = "alex-dao-proposals/agp007-staking-default.clar"
+depends_on = ["alex-reserve-pool"]
+
+[contracts.agp008-staking-alex]
+path = "alex-dao-proposals/agp008-staking-alex.clar"
+depends_on = ["alex-reserve-pool", "age000-governance-token"]
