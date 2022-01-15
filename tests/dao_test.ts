@@ -231,22 +231,6 @@ Clarinet.test({
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
-      "get-activation-threshold",
-      [],
-      deployer.address
-    );
-    call.result.expectUint(1);
-
-    call = chain.callReadOnlyFn(
-      "alex-reserve-pool",
-      "get-activation-delay",
-      [],
-      deployer.address
-    );
-    call.result.expectUint(525);
-
-    call = chain.callReadOnlyFn(
-      "alex-reserve-pool",
       "get-reward-cycle-length",
       [],
       deployer.address
@@ -275,6 +259,14 @@ Clarinet.test({
       deployer.address
     );
     call.result.expectBool(true);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-activation-block-or-default",
+      [ types.principal(age000Address) ],
+      deployer.address
+    );
+    call.result.expectUint(46601);
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
