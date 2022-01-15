@@ -22,6 +22,8 @@ const agp007Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp007-staking-default";
 const agp008Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp008-staking-alex";
+const agp009Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp009-wstx-wbtc-50-50";  
 
 class DAO {
   chain: Chain;
@@ -78,6 +80,26 @@ class DAO {
     ]);
     return block.receipts[0].result;
   }
+
+  mintToken(
+    sender: Account,
+    token: string,
+    amount: number,
+    receiver: string
+  ) {
+    let block = this.chain.mineBlock([
+      Tx.contractCall(
+        token,
+        "mint-fixed",
+        [
+          types.uint(amount),
+          types.principal(receiver)
+        ],
+        sender.address
+      ),
+    ]);
+    return block.receipts[0].result;
+  }  
 }
 
 /**
@@ -261,5 +283,66 @@ Clarinet.test({
       deployer.address
     );
     call.result.expectUint(1e8);
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp009",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      1_000_000e8,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-xbtc",
+      1_000e8,
+      daoAddress
+    );
+    result.expectOk();    
+
+    result = await DAOTest.executiveAction(deployer, agp009Address);
+    result.expectOk();
+
+    let call = chain.callReadOnlyFn(
+      "fixed-weight-pool",
+      "get-pool-contracts",
+      [types.uint(1)],
+      deployer.address
+    );
+    result = call.result.expectOk().expectTuple();
+    result["token-x"].expectPrincipal(deployer.address + ".token-wstx");
+    result["token-y"].expectPrincipal(deployer.address + ".token-wbtc");
+    result["weight-x"].expectUint(0.5e8);
+    result["weight-y"].expectUint(0.5e8);
+
+    call = chain.callReadOnlyFn(
+      "fixed-weight-pool",
+      "get-pool-details",
+      [
+        types.principal(deployer.address + ".token-wstx"),
+        types.principal(deployer.address + ".token-wbtc"),
+        types.uint(0.5e8),
+        types.uint(0.5e8),
+      ],
+      deployer.address
+    );
+    result = call.result.expectOk().expectTuple();
+    result["fee-rebate"].expectUint(0.5e8);
+    result["fee-rate-x"].expectUint(0.003e8);
+    result["fee-rate-y"].expectUint(0.003e8);
+    result["oracle-average"].expectUint(0.95e8);
   },
 });

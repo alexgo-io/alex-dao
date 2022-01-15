@@ -489,3 +489,7 @@ depends_on = ["alex-reserve-pool"]
 [contracts.agp008-staking-alex]
 path = "alex-dao-proposals/agp008-staking-alex.clar"
 depends_on = ["alex-reserve-pool", "age000-governance-token"]
+
+[contracts.agp009-wstx-wbtc-50-50]
+path = "alex-dao-proposals/agp009-wstx-wbtc-50-50.clar"
+depends_on = ["token-wbtc", "token-xbtc", "token-wstx", "fixed-weight-pool", "fwp-wstx-wbtc-50-50", "multisig-fwp-wstx-wbtc-50-50" ]
