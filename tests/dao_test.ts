@@ -12,6 +12,8 @@ const bootstrapAddress =
 const age000Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.age000-governance-token";
 
+const wstxAlex5050Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.fwp-wstx-alex-50-50";
+
 const agp003Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp003-launchpad-alex";
 const agp005Address =
@@ -224,6 +226,30 @@ Clarinet.test({
       deployer.address
     );
     call.result.expectUint(1e8);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "is-token-approved",
+      [ types.principal(wstxAlex5050Address) ],
+      deployer.address
+    );
+    call.result.expectBool(true);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-activation-block-or-default",
+      [ types.principal(wstxAlex5050Address) ],
+      deployer.address
+    );
+    call.result.expectUint(46601);    
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-apower-multiplier-in-fixed-or-default",
+      [ types.principal(wstxAlex5050Address) ],
+      deployer.address
+    );
+    call.result.expectUint(0.3e8);    
   },
 });
 
