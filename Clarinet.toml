@@ -476,20 +476,8 @@ depends_on = ["proposal-trait", "alex-launchpad", "lottery-ido-alex", "age000-go
 
 [contracts.agp005-wstx-alex-50-50]
 path = "alex-dao-proposals/agp005-wstx-alex-50-50.clar"
-depends_on = ["age000-governance-token", "token-wstx", "fixed-weight-pool", "fwp-wstx-alex-50-50", "multisig-fwp-wstx-alex-50-50" ]
+depends_on = ["age000-governance-token", "token-wstx", "fixed-weight-pool", "fwp-wstx-alex-50-50", "multisig-fwp-wstx-alex-50-50", "alex-vault", "alex-reserve-pool" ]
 
-[contracts.agp006-flash-loan-fee]
-path = "alex-dao-proposals/agp006-flash-loan-fee.clar"
-depends_on = ["alex-vault"]
-
-[contracts.agp007-staking-default]
-path = "alex-dao-proposals/agp007-staking-default.clar"
-depends_on = ["alex-reserve-pool"]
-
-[contracts.agp008-staking-alex]
-path = "alex-dao-proposals/agp008-staking-alex.clar"
-depends_on = ["alex-reserve-pool", "age000-governance-token"]
-
-[contracts.agp009-wstx-wbtc-50-50]
-path = "alex-dao-proposals/agp009-wstx-wbtc-50-50.clar"
+[contracts.agp006-wstx-wbtc-50-50]
+path = "alex-dao-proposals/agp006-wstx-wbtc-50-50.clar"
 depends_on = ["token-wbtc", "token-xbtc", "token-wstx", "fixed-weight-pool", "fwp-wstx-wbtc-50-50", "multisig-fwp-wstx-wbtc-50-50" ]

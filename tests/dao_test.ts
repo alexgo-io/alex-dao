@@ -17,13 +17,7 @@ const agp003Address =
 const agp005Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp005-wstx-alex-50-50";
 const agp006Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp006-flash-loan-fee";
-const agp007Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp007-staking-default";
-const agp008Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp008-staking-alex";
-const agp009Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp009-wstx-wbtc-50-50";  
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp006-wstx-wbtc-50-50";  
 
 class DAO {
   chain: Chain;
@@ -182,46 +176,16 @@ Clarinet.test({
     result["fee-rate-x"].expectUint(0.003e8);
     result["fee-rate-y"].expectUint(0.003e8);
     result["oracle-average"].expectUint(0.95e8);
-  },
-});
 
-Clarinet.test({
-  name: "DAO: agp006",
-
-  async fn(chain: Chain, accounts: Map<string, Account>) {
-    let deployer = accounts.get("deployer")!;
-    let DAOTest = new DAO(chain, deployer);
-
-    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
-    result.expectOk();
-
-    result = await DAOTest.executiveAction(deployer, agp006Address);
-    result.expectOk();
-
-    let call = chain.callReadOnlyFn(
+    call = chain.callReadOnlyFn(
       "alex-vault",
       "get-flash-loan-fee-rate",
       [],
       deployer.address
     );
     call.result.expectOk().expectUint(0.003e8);
-  },
-});
 
-Clarinet.test({
-  name: "DAO: agp007",
-
-  async fn(chain: Chain, accounts: Map<string, Account>) {
-    let deployer = accounts.get("deployer")!;
-    let DAOTest = new DAO(chain, deployer);
-
-    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
-    result.expectOk();
-
-    result = await DAOTest.executiveAction(deployer, agp007Address);
-    result.expectOk();
-
-    let call = chain.callReadOnlyFn(
+    call = chain.callReadOnlyFn(
       "alex-reserve-pool",
       "get-token-halving-cycle",
       [],
@@ -236,23 +200,8 @@ Clarinet.test({
       deployer.address
     );
     call.result.expectUint(525);
-  },
-});
-
-Clarinet.test({
-  name: "DAO: agp008",
-
-  async fn(chain: Chain, accounts: Map<string, Account>) {
-    let deployer = accounts.get("deployer")!;
-    let DAOTest = new DAO(chain, deployer);
-
-    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
-    result.expectOk();
-
-    result = await DAOTest.executiveAction(deployer, agp008Address);
-    result.expectOk();
-
-    let call = chain.callReadOnlyFn(
+    
+    call = chain.callReadOnlyFn(
       "alex-reserve-pool",
       "is-token-approved",
       [ types.principal(age000Address) ],
@@ -266,7 +215,7 @@ Clarinet.test({
       [ types.principal(age000Address) ],
       deployer.address
     );
-    call.result.expectUint(46601);
+    call.result.expectUint(46601);    
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -279,7 +228,7 @@ Clarinet.test({
 });
 
 Clarinet.test({
-  name: "DAO: agp009",
+  name: "DAO: agp006",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -305,7 +254,7 @@ Clarinet.test({
     );
     result.expectOk();    
 
-    result = await DAOTest.executiveAction(deployer, agp009Address);
+    result = await DAOTest.executiveAction(deployer, agp006Address);
     result.expectOk();
 
     let call = chain.callReadOnlyFn(
