@@ -480,4 +480,4 @@ depends_on = ["age000-governance-token", "token-wstx", "fixed-weight-pool", "fwp
 
 [contracts.agp006-wstx-wbtc-50-50]
 path = "alex-dao-proposals/agp006-wstx-wbtc-50-50.clar"
-depends_on = ["token-wbtc", "token-xbtc", "token-wstx", "fixed-weight-pool", "fwp-wstx-wbtc-50-50", "multisig-fwp-wstx-wbtc-50-50" ]
+depends_on = ["token-wbtc", "token-xbtc", "token-wstx", "fixed-weight-pool", "fwp-wstx-wbtc-50-50", "multisig-fwp-wstx-wbtc-50-50", "alex-reserve-pool" ]
