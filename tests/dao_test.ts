@@ -23,6 +23,8 @@ const agp006Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp006-wstx-wbtc-50-50";  
 const agp007Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp007-wstx-alex-50-50";
+const agp008Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp008";  
 
 
 class DAO {
@@ -366,5 +368,20 @@ Clarinet.test({
 
     result = await DAOTest.executiveAction(deployer, agp007Address);
     result.expectOk();
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp008",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.executiveAction(deployer, agp008Address);
+    result.expectOk();   
   },
 });
