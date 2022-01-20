@@ -489,3 +489,11 @@ depends_on = ["age000-governance-token", "token-wstx", "fixed-weight-pool", "fwp
 [contracts.agp008]
 path = "alex-dao-proposals/agp008.clar"
 depends_on = ["age000-governance-token"]
+
+[contracts.agp009]
+path = "alex-dao-proposals/agp009.clar"
+depends_on = ["weighted-equation"]
+
+[contracts.agp010]
+path = "alex-dao-proposals/agp010.clar"
+depends_on = ["weighted-equation"]
