@@ -5,6 +5,7 @@ import {
   Account,
   types,
 } from "https://deno.land/x/clarinet@v0.14.0/index.ts";
+import { assertEquals } from 'https://deno.land/std@0.90.0/testing/asserts.ts';
 
 const daoAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.executor-dao";
 const bootstrapAddress =
@@ -14,6 +15,8 @@ const age000Address =
 
 const wstxAlex5050Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.fwp-wstx-alex-50-50";
 const wstxWbtc5050Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.fwp-wstx-wbtc-50-50";
+const wstxAlex5050v101Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.fwp-wstx-alex-50-50-v1-01";
+const wstxWbtc5050v101Address = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.fwp-wstx-wbtc-50-50-v1-01";
 
 const agp003Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp003-launchpad-alex";
@@ -29,7 +32,10 @@ const agp009Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp009";  
 const agp010Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp010";    
-
+const agp011Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp011";    
+const agp012Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp012";      
 
 
 class DAO {
@@ -392,7 +398,46 @@ Clarinet.test({
 });
 
 Clarinet.test({
-  name: "DAO: agp009/10",
+  name: "DAO: agp009/10/11",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);    
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      1_000_000e8,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-xbtc",
+      1_000e8,
+      daoAddress
+    );
+    result.expectOk();    
+
+    result = await DAOTest.executiveAction(deployer, agp006Address);
+    result.expectOk();  
+
+    result = await DAOTest.executiveAction(deployer, agp009Address);
+    result.expectOk();   
+    result = await DAOTest.executiveAction(deployer, agp010Address);
+    result.expectOk();       
+    result = await DAOTest.executiveAction(deployer, agp011Address);
+    result.expectOk();        
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp012",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -401,9 +446,148 @@ Clarinet.test({
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk();
 
-    result = await DAOTest.executiveAction(deployer, agp009Address);
-    result.expectOk();   
-    result = await DAOTest.executiveAction(deployer, agp010Address);
-    result.expectOk();       
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      1_000_000e8,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-xbtc",
+      1_000e8,
+      daoAddress
+    );
+    result.expectOk();      
+
+    result = await DAOTest.executiveAction(deployer, agp012Address);
+    result.expectOk();
+
+    let call = chain.callReadOnlyFn(
+      "fixed-weight-pool-v1-01",
+      "get-pool-contracts",
+      [types.uint(1)],
+      deployer.address
+    );
+    result = call.result.expectOk().expectTuple();
+    result["token-x"].expectPrincipal(deployer.address + ".token-wstx");
+    result["token-y"].expectPrincipal(
+      deployer.address + ".age000-governance-token"
+    );
+    result["weight-x"].expectUint(0.5e8);
+    result["weight-y"].expectUint(0.5e8);
+
+    call = chain.callReadOnlyFn(
+      "fixed-weight-pool-v1-01",
+      "get-pool-details",
+      [
+        types.principal(deployer.address + ".token-wstx"),
+        types.principal(deployer.address + ".age000-governance-token"),
+        types.uint(0.5e8),
+        types.uint(0.5e8),
+      ],
+      deployer.address
+    );
+    result = call.result.expectOk().expectTuple();
+    result["fee-rebate"].expectUint(0.5e8);
+    result["fee-rate-x"].expectUint(0.003e8);
+    result["fee-rate-y"].expectUint(0.003e8);
+    result["oracle-average"].expectUint(0.95e8);
+    
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "is-token-approved",
+      [ types.principal(wstxAlex5050v101Address) ],
+      deployer.address
+    );
+    call.result.expectBool(true);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-activation-block-or-default",
+      [ types.principal(wstxAlex5050v101Address) ],
+      deployer.address
+    );
+    call.result.expectUint(46601);    
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-apower-multiplier-in-fixed-or-default",
+      [ types.principal(wstxAlex5050v101Address) ],
+      deployer.address
+    );
+    call.result.expectUint(0.3e8);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-activation-block-or-default",
+      [ types.principal(wstxAlex5050Address) ],
+      deployer.address
+    );
+    assertEquals(call.result, "u340282366920938463463374607431768211455");
+
+    call = chain.callReadOnlyFn(
+      "fixed-weight-pool-v1-01",
+      "get-pool-contracts",
+      [types.uint(2)],
+      deployer.address
+    );
+    result = call.result.expectOk().expectTuple();
+    result["token-x"].expectPrincipal(deployer.address + ".token-wstx");
+    result["token-y"].expectPrincipal(deployer.address + ".token-wbtc");
+    result["weight-x"].expectUint(0.5e8);
+    result["weight-y"].expectUint(0.5e8);
+
+    call = chain.callReadOnlyFn(
+      "fixed-weight-pool-v1-01",
+      "get-pool-details",
+      [
+        types.principal(deployer.address + ".token-wstx"),
+        types.principal(deployer.address + ".token-wbtc"),
+        types.uint(0.5e8),
+        types.uint(0.5e8),
+      ],
+      deployer.address
+    );
+    result = call.result.expectOk().expectTuple();
+    result["fee-rebate"].expectUint(0.5e8);
+    result["fee-rate-x"].expectUint(0.003e8);
+    result["fee-rate-y"].expectUint(0.003e8);
+    result["oracle-average"].expectUint(0.95e8);
+    
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "is-token-approved",
+      [ types.principal(wstxWbtc5050v101Address) ],
+      deployer.address
+    );
+    call.result.expectBool(true);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-activation-block-or-default",
+      [ types.principal(wstxWbtc5050v101Address) ],
+      deployer.address
+    );
+    call.result.expectUint(46601);    
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-apower-multiplier-in-fixed-or-default",
+      [ types.principal(wstxWbtc5050v101Address) ],
+      deployer.address
+    );
+    call.result.expectUint(0.3e8);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-activation-block-or-default",
+      [ types.principal(wstxWbtc5050Address) ],
+      deployer.address
+    );
+    assertEquals(call.result, "u340282366920938463463374607431768211455");
   },
 });
