@@ -36,6 +36,8 @@ const agp011Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp011";    
 const agp012Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp012";      
+const agp013Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp013";       
 
 
 class DAO {
@@ -610,5 +612,78 @@ Clarinet.test({
       deployer.address
     );
     assertEquals(call.result, "u340282366920938463463374607431768211455");
+  },
+});
+
+
+Clarinet.test({
+  name: "DAO: agp013",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      (504_000 + 105_236) * 1e8,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-xbtc",
+      5e8,
+      daoAddress
+    );
+    result.expectOk();      
+
+    result = await DAOTest.executiveAction(deployer, agp005Address);
+    result.expectOk();
+    result = await DAOTest.executiveAction(deployer, agp006Address);
+    result.expectOk();   
+    result = await DAOTest.executiveAction(deployer, agp012Address);
+    result.expectOk();
+    result = await DAOTest.executiveAction(deployer, agp013Address);
+    result.expectOk();    
+
+    let call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-coinbase-amount-or-default",
+      [ 
+        types.principal(age000Address),
+        types.uint(1)
+      ],
+      deployer.address
+    );
+    call.result.expectUint(344000e8);
+
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-coinbase-amount-or-default",
+      [ 
+        types.principal(wstxAlex5050v101Address),
+        types.uint(1)
+      ],
+      deployer.address
+    );
+    call.result.expectUint(344000e8);
+    
+    call = chain.callReadOnlyFn(
+      "alex-reserve-pool",
+      "get-coinbase-amount-or-default",
+      [ 
+        types.principal(wstxWbtc5050v101Address),
+        types.uint(1)
+      ],
+      deployer.address
+    );
+    call.result.expectUint(344000e8);    
+
   },
 });
