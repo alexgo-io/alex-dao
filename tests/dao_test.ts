@@ -449,7 +449,7 @@ Clarinet.test({
     result = await DAOTest.transferToken(
       deployer,
       "token-wstx",
-      1_000_000e8,
+      (504_000 + 105_236) * 1e8,
       daoAddress,
       new ArrayBuffer(4)
     );
@@ -458,15 +458,36 @@ Clarinet.test({
     result = await DAOTest.mintToken(
       deployer,
       "token-xbtc",
-      1_000e8,
+      5e8,
       daoAddress
     );
     result.expectOk();      
 
-    result = await DAOTest.executiveAction(deployer, agp012Address);
+    result = await DAOTest.executiveAction(deployer, agp005Address);
+    result.expectOk();
+    result = await DAOTest.executiveAction(deployer, agp006Address);
     result.expectOk();
 
     let call = chain.callReadOnlyFn(
+      "age000-governance-token",
+      "get-balance",
+      [ types.principal(deployer.address) ],
+      deployer.address
+    );
+    call.result.expectOk().expectUint(0);
+
+    call = chain.callReadOnlyFn(
+      "token-wbtc",
+      "get-balance",
+      [ types.principal(deployer.address) ],
+      deployer.address
+    );
+    call.result.expectOk().expectUint(0);          
+
+    result = await DAOTest.executiveAction(deployer, agp012Address);
+    result.expectOk();
+
+    call = chain.callReadOnlyFn(
       "fixed-weight-pool-v1-01",
       "get-pool-contracts",
       [types.uint(1)],
