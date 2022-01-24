@@ -647,6 +647,8 @@ Clarinet.test({
     result.expectOk();
     result = await DAOTest.executiveAction(deployer, agp006Address);
     result.expectOk();   
+    result = await DAOTest.executiveAction(deployer, agp011Address);
+    result.expectOk();    
     result = await DAOTest.executiveAction(deployer, agp012Address);
     result.expectOk();
     result = await DAOTest.executiveAction(deployer, agp013Address);
