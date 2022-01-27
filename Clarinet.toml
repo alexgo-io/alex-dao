@@ -568,8 +568,8 @@ depends_on = [
   "alex-reserve-pool"
 ]
 
-[contracts.agp013]
-path = "alex-dao-proposals/agp013.clar"
+[contracts.agp014]
+path = "alex-dao-proposals/agp014.clar"
 depends_on = [
   "alex-reserve-pool",
   "age000-governance-token",  
