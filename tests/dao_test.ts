@@ -37,7 +37,9 @@ const agp011Address =
 const agp012Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp012";      
 const agp014Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp014";         
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp014";        
+const agp015Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp015";           
 
 
 class DAO {
@@ -236,7 +238,7 @@ Clarinet.test({
       [ types.principal(age000Address) ],
       deployer.address
     );
-    call.result.expectUint(46601);    
+    call.result.expectUint(1);    
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -260,7 +262,7 @@ Clarinet.test({
       [ types.principal(wstxAlex5050Address) ],
       deployer.address
     );
-    call.result.expectUint(46601);    
+    call.result.expectUint(1);    
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -345,7 +347,7 @@ Clarinet.test({
       [ types.principal(wstxWbtc5050Address) ],
       deployer.address
     );
-    call.result.expectUint(46601);    
+    call.result.expectUint(1);    
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -534,7 +536,7 @@ Clarinet.test({
       [ types.principal(wstxAlex5050v101Address) ],
       deployer.address
     );
-    call.result.expectUint(46601);    
+    call.result.expectUint(1);    
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -595,7 +597,7 @@ Clarinet.test({
       [ types.principal(wstxWbtc5050v101Address) ],
       deployer.address
     );
-    call.result.expectUint(46601);    
+    call.result.expectUint(1);    
 
     call = chain.callReadOnlyFn(
       "alex-reserve-pool",
@@ -617,7 +619,7 @@ Clarinet.test({
 
 
 Clarinet.test({
-  name: "DAO: agp014",
+  name: "DAO: agp014/15",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -653,6 +655,8 @@ Clarinet.test({
     result.expectOk();
     result = await DAOTest.executiveAction(deployer, agp014Address);
     result.expectOk();    
+    result = await DAOTest.executiveAction(deployer, agp015Address);
+    result.expectOk();        
 
     let call = chain.callReadOnlyFn(
       "alex-reserve-pool",

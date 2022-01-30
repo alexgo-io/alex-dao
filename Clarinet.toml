@@ -577,3 +577,12 @@ depends_on = [
   "fwp-wstx-wbtc-50-50-v1-01",
 ]
 
+[contracts.agp015]
+path = "alex-dao-proposals/agp015.clar"
+depends_on = [
+  "alex-reserve-pool",
+  "age000-governance-token",  
+  "fwp-wstx-alex-50-50-v1-01",
+  "fwp-wstx-wbtc-50-50-v1-01",
+]
+
