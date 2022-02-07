@@ -39,9 +39,11 @@ const agp012Address =
 const agp014Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp014";        
 const agp015Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp015";        
-const agp016Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp016";             
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp015";  
+const agp017Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp017";          
+const agp018Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp018";             
 
 
 class DAO {
@@ -621,7 +623,7 @@ Clarinet.test({
 
 
 Clarinet.test({
-  name: "DAO: agp014/15/16",
+  name: "DAO: agp014/15/18",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -654,8 +656,9 @@ Clarinet.test({
       daoAddress
     );
     result.expectOk();    
-        
-
+    
+    result = await DAOTest.executiveAction(deployer, agp003Address);
+    result.expectOk();    
     result = await DAOTest.executiveAction(deployer, agp005Address);
     result.expectOk();
     result = await DAOTest.executiveAction(deployer, agp006Address);
@@ -668,8 +671,10 @@ Clarinet.test({
     result.expectOk();    
     result = await DAOTest.executiveAction(deployer, agp015Address);
     result.expectOk();       
-    result = await DAOTest.executiveAction(deployer, agp016Address);
-    result.expectOk();            
+    // result = await DAOTest.executiveAction(deployer, agp017Address);      
+    // result.expectOk();        
+    result = await DAOTest.executiveAction(deployer, agp018Address);
+    result.expectOk(); 
 
     let call = chain.callReadOnlyFn(
       "alex-reserve-pool",
