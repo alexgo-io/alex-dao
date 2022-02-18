@@ -82,14 +82,14 @@
 	(let
 		(
 			(proposal-principal (contract-of proposal))
-			(signals (+ (get-signals proposal-principal) (if (has-signalled proposal-principal tx-sender) u0 u1)))
+			(signals (+ (get-signals proposal-principal) (if (has-signalled proposal-principal contract-caller) u0 u1)))
 		)
-		(asserts! (is-executive-team-member tx-sender) err-not-executive-team-member)
+		(asserts! (is-executive-team-member contract-caller) err-not-executive-team-member)
 		(asserts! (< block-height (var-get executive-team-sunset-height)) err-sunset-height-reached)
 		(and (>= signals (var-get executive-signals-required))
-			(try! (contract-call? .executor-dao execute proposal tx-sender))
+			(try! (contract-call? .executor-dao execute proposal contract-caller))
 		)
-		(map-set executive-action-signals {proposal: proposal-principal, team-member: tx-sender} true)
+		(map-set executive-action-signals {proposal: proposal-principal, team-member: contract-caller} true)
 		(map-set executive-action-signal-count proposal-principal signals)
 		(ok signals)
 	)

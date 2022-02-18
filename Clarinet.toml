@@ -302,6 +302,12 @@ depends_on = [
   "trait-multisig-vote"
 ]
 
+[contracts.agp019]
+path = "alex-dao-proposals/agp019.clar"
+depends_on = [
+  "token-apower"
+]
+
 
 
 
