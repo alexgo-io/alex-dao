@@ -43,7 +43,9 @@ const agp015Address =
 const agp017Address =
   "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp017";          
 const agp018Address =
-  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp018";             
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp018";   
+const agp019Address =
+  "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE.agp019";               
 
 
 class DAO {
@@ -623,7 +625,7 @@ Clarinet.test({
 
 
 Clarinet.test({
-  name: "DAO: agp014/15/18",
+  name: "DAO: agp014/15/18/19",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -675,6 +677,8 @@ Clarinet.test({
     // result.expectOk();        
     result = await DAOTest.executiveAction(deployer, agp018Address);
     result.expectOk(); 
+    result = await DAOTest.executiveAction(deployer, agp019Address);
+    result.expectOk();     
 
     let call = chain.callReadOnlyFn(
       "alex-reserve-pool",
