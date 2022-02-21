@@ -1,7 +1,7 @@
 [project]
 name = "executor-dao"
 requirements = []
-costs_version = 2
+repl.costs_version = 2
 
 [contracts.age000-governance-token]
 path = "contracts/extensions/age000-governance-token.clar"
@@ -298,8 +298,7 @@ depends_on = [
   "age000-governance-token",  
   "fwp-wstx-alex-50-50-v1-01",
   "fwp-wstx-wbtc-50-50-v1-01", 
-  "trait-sip-010", 
-  "trait-multisig-vote"
+  "trait-sip-010"
 ]
 
 [contracts.agp019]
