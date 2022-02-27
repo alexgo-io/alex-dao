@@ -1,5 +1,5 @@
 {
-  "name": "alex-dao-proposals",
+  "name": "alex-dao",
   "dependencies": {
     "alex_dao_proposals": {
       "commit": "db87b47fbc923a430250ddd7156888bb8205303c",
