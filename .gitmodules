@@ -1,6 +1,0 @@
-[submodule "alex-v1"]
-	path = alex-v1
-	url = https://github.com/alexgo-io/alex-v1.git
-[submodule "alex-dao-proposals"]
-	path = alex-dao-proposals
-	url = https://github.com/alexgo-io/alex-dao-proposals.git
