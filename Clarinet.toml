@@ -636,6 +636,22 @@ depends_on = [ "alex-launchpad-v1-1", "token-wban", "age000-governance-token", "
 path = "alex-dao-proposals/contracts/agp035.clar"
 depends_on = [ "alex-reserve-pool", "simple-weight-pool-alex", "fwp-alex-wban", "multisig-fwp-alex-wban" ]
 
+[contracts.agp036]
+path = "alex-dao-proposals/contracts/agp036.clar"
+depends_on = [ "simple-weight-pool-alex" ]
+
+[contracts.agp037]
+path = "alex-dao-proposals/contracts/agp037.clar"
+depends_on = [ "alex-reserve-pool", "fwp-alex-wban" ]
+
+[contracts.agp039]
+path = "alex-dao-proposals/contracts/agp039.clar"
+depends_on = [ "age003-emergency-execute", "age004-claim-and-stake" ]
+
+[contracts.age004-claim-and-stake]
+path = "alex-dao-proposals/contracts/age004-claim-and-stake.clar"
+depends_on = [ "executor-dao", "extension-trait", "alex-reserve-pool", "fwp-wstx-alex-50-50-v1-01", "fwp-wstx-wbtc-50-50-v1-01", "age000-governance-token", "fwp-alex-wban" ]
+
 
 
 
