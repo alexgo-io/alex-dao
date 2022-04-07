@@ -234,3 +234,26 @@ Clarinet.test({
     result.expectOk();
   },
 });
+
+Clarinet.test({
+  name: "DAO: agp042",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-usda",
+      100_000e8,
+      daoAddress
+    );
+    result.expectOk();    
+
+    result = await DAOTest.executiveAction(deployer, deployerAddress + ".agp042");
+    result.expectOk();
+  },
+});
