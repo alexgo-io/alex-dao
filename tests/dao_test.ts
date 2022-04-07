@@ -219,3 +219,18 @@ Clarinet.test({
     result.receipts[1].result.expectErr().expectUint(2026);
   },
 });
+
+Clarinet.test({
+  name: "DAO: agp040",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.executiveAction(deployer, deployerAddress + ".agp040");
+    result.expectOk();
+  },
+});
