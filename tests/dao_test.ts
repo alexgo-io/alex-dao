@@ -259,7 +259,7 @@ Clarinet.test({
 });
 
 Clarinet.test({
-  name: "DAO: agp043",
+  name: "DAO: agp044",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -268,7 +268,7 @@ Clarinet.test({
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp043");
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp044");
     result.expectOk();
 
     let call: any = chain.callReadOnlyFn("age005-claim-and-stake", "buff-to-uint", [types.buff(new Uint8Array([0x01]).buffer)], deployer.address);
