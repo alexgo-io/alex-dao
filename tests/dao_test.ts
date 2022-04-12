@@ -257,3 +257,36 @@ Clarinet.test({
     result.expectOk();
   },
 });
+
+Clarinet.test({
+  name: "DAO: agp043",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp043");
+    result.expectOk();
+
+    let call: any = chain.callReadOnlyFn("age005-claim-and-stake", "buff-to-uint", [types.buff(new Uint8Array([0x01]).buffer)], deployer.address);
+    call.result.expectUint(1);
+
+    result = chain.mineBlock([
+      Tx.contractCall("age005-claim-and-stake", "claim-and-stake", 
+      [
+        types.principal(age003Address),
+        types.buff(new Uint8Array([0x01]).buffer)
+      ], deployer.address),
+      Tx.contractCall("age005-claim-and-stake", "claim-and-stake", 
+      [
+        types.principal(deployer.address + ".age005-claim-and-stake"),
+        types.buff(new Uint8Array([0x01]).buffer)
+      ], deployer.address)      
+    ]);
+    result.receipts[0].result.expectErr().expectUint(3000);
+    result.receipts[1].result.expectErr().expectUint(2026);
+  },
+});
