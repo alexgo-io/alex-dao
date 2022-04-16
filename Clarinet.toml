@@ -501,10 +501,6 @@ depends_on = [ "trait-sip-010", "trait-ownable" ]
 path = "contracts_modules/alex_v1/auto-token/auto-alex.clar"
 depends_on = [ "trait-sip-010", "trait-ownable" ]
 
-[contracts.yield-vault-alex]
-path = "contracts_modules/alex_v1/pool/yield-vault-alex.clar"
-depends_on = [ "auto-alex", "age000-governance-token", "trait-ownable", "alex-reserve-pool" ]
-
 [contracts.fwp-alex-wbtc-50-50]
 path = "contracts_modules/alex_v1/pool-token/fwp-alex-wbtc-50-50.clar"
 depends_on = [ "trait-sip-010", "trait-ownable" ]
@@ -667,6 +663,30 @@ depends_on = [ "executor-dao", "extension-trait", "alex-reserve-pool", "fwp-wstx
 [contracts.agp043]
 path = "alex-dao-proposals/contracts/agp043.clar"
 depends_on = [ "age003-emergency-execute", "age005-claim-and-stake" ]
+
+[contracts.token-slime]
+path = "contracts_modules/alex_v1/token/token-slime.clar"
+depends_on = [ "trait-ownable", "trait-sip-010" ]
+
+[contracts.token-wslm]
+path = "contracts_modules/alex_v1/wrapped-token/token-wslm.clar"
+depends_on = [ "trait-ownable", "trait-sip-010", "token-slime", "trait-ido-ft"]
+
+[contracts.fwp-alex-wslm]
+path = "contracts_modules/alex_v1/pool-token/fwp-alex-wslm.clar"
+depends_on = [ "trait-sip-010", "trait-ownable" ]
+
+[contracts.multisig-fwp-alex-wslm]
+path = "contracts_modules/alex_v1/multisig/multisig-fwp-alex-wslm.clar"
+depends_on = [
+  "fwp-alex-wslm",
+  "simple-weight-pool-alex",
+  "trait-multisig-vote"
+]
+
+[contracts.agp046]
+path = "alex-dao-proposals/contracts/agp046.clar"
+depends_on = [ "alex-reserve-pool", "simple-weight-pool-alex", "token-wslm", "fwp-alex-wslm", "multisig-fwp-alex-wslm" ]
 
 
 

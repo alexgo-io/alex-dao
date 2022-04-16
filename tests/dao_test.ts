@@ -290,3 +290,26 @@ Clarinet.test({
     result.receipts[1].result.expectErr().expectUint(2026);
   },
 });
+
+Clarinet.test({
+  name: "DAO: agp046",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-slime",
+      360_000e8,
+      daoAddress
+    );
+    result.expectOk();    
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp046");
+    result.expectOk();
+  },
+});
