@@ -499,11 +499,7 @@ depends_on = [ "trait-sip-010", "trait-ownable" ]
 
 [contracts.auto-alex]
 path = "contracts_modules/alex_v1/auto-token/auto-alex.clar"
-depends_on = [ "trait-sip-010", "trait-ownable" ]
-
-[contracts.yield-vault-alex]
-path = "contracts_modules/alex_v1/pool/yield-vault-alex.clar"
-depends_on = [ "auto-alex", "age000-governance-token", "trait-ownable", "alex-reserve-pool" ]
+depends_on = [ "trait-sip-010", "trait-ownable", "age000-governance-token", "alex-reserve-pool", "staking-helper" ]
 
 [contracts.fwp-alex-wbtc-50-50]
 path = "contracts_modules/alex_v1/pool-token/fwp-alex-wbtc-50-50.clar"
@@ -668,6 +664,25 @@ depends_on = [ "executor-dao", "extension-trait", "alex-reserve-pool", "fwp-wstx
 path = "alex-dao-proposals/contracts/agp044.clar"
 depends_on = [ "age003-emergency-execute", "age005-claim-and-stake", "alex-reserve-pool", "fwp-alex-usda" ]
 
+[contracts.agp045]
+path = "alex-dao-proposals/contracts/agp045.clar"
+depends_on = [ "age000-governance-token", "token-apower" ]
+
+[contracts.agp047]
+path = "alex-dao-proposals/contracts/agp047.clar"
+depends_on = [ "alex-reserve-pool", "auto-alex" ]
+
+[contracts.agp048]
+path = "alex-dao-proposals/contracts/agp048.clar"
+depends_on = [ "alex-reserve-pool", "simple-weight-pool-alex", "fwp-alex-autoalex", "multisig-fwp-alex-autoalex", "auto-alex" ]
+
+[contracts.fwp-alex-autoalex]
+path = "contracts_modules/alex_v1/pool-token/fwp-alex-autoalex.clar"
+depends_on = [ "trait-sip-010", "trait-ownable" ]
+
+[contracts.multisig-fwp-alex-autoalex]
+path = "contracts_modules/alex_v1/multisig/multisig-fwp-alex-autoalex.clar"
+depends_on = [ "fwp-alex-autoalex", "simple-weight-pool-alex", "trait-multisig-vote" ]
 
 
 
