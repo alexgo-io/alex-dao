@@ -292,16 +292,96 @@ Clarinet.test({
 });
 
 Clarinet.test({
-  name: "DAO: agp045",
+    name: "DAO: agp045",
+
+    async fn(chain: Chain, accounts: Map<string, Account>) {
+      let deployer = accounts.get("deployer")!;
+      let DAOTest = new DAO(chain, deployer);
+  
+      let result: any = await DAOTest.construct(deployer, bootstrapAddress);  
+      result.expectOk();  
+
+      result = await DAOTest.executiveAction(deployer, deployerAddress + ".agp045");    
+      result.expectOk();
+    },
+  });          
+
+Clarinet.test({
+  name: "DAO: agp046",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
     let DAOTest = new DAO(chain, deployer);
 
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
-    result.expectOk();  
-
-    result = await DAOTest.executiveAction(deployer, deployerAddress + ".agp045");
     result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-slime",
+      360_000e8,
+      daoAddress
+    );
+    result.expectOk();    
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp046");
+    result.expectOk();
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp047/048",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "age000-governance-token",
+      200_000e8,
+      daoAddress
+    );
+    result.expectOk();
+    let block = chain.mineBlock(
+      [
+      Tx.contractCall("alex-reserve-pool", "add-token", 
+        [types.principal(deployer.address + ".age000-governance-token")],
+        deployer.address
+      ),
+      Tx.contractCall("alex-reserve-pool", "set-activation-block",
+        [
+          types.principal(deployer.address + ".age000-governance-token"),
+          types.uint(0)
+        ],
+        deployer.address
+      ),
+      Tx.contractCall("alex-reserve-pool", "set-coinbase-amount",
+        [
+          types.principal(deployer.address + ".age000-governance-token"),
+          types.uint(1e8),
+          types.uint(1e8),
+          types.uint(1e8),
+          types.uint(1e8),
+          types.uint(1e8),
+        ],
+        deployer.address
+      )
+      ]
+    );
+    block.receipts.forEach((e) => { e.result.expectOk() });    
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp039");
+    result.expectOk();
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp047");
+    result.expectOk();    
+    chain.mineEmptyBlockUntil(57626);
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp048");
+    result.expectOk();    
   },
 });
