@@ -728,6 +728,10 @@ depends_on = [ "trait-ownable", "trait-sip-010"]
 path = "alex-dao-proposals/contracts/agp046.clar"
 depends_on = [ "alex-reserve-pool", "simple-weight-pool-alex", "token-wslm", "fwp-alex-wslm", "multisig-fwp-alex-wslm" ]
 
+[contracts.age006-mint-burn-apower]
+path = "alex-dao-proposals/contracts/age006-mint-burn-apower.clar"
+depends_on = [ "token-apower", "auto-alex" ]
+
 [contracts.agp052]
 path = "alex-dao-proposals/contracts/agp052.clar"
 depends_on = [ "alex-reserve-pool", "fixed-weight-pool-v1-01", "token-wxusd", "fwp-wstx-wxusd-50-50-v1-01", "multisig-fwp-wstx-wxusd-50-50-v1-01" ]
