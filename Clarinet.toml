@@ -748,6 +748,11 @@ depends_on = [ "alex-vault", "age000-governance-token", "auto-fwp-wstx-alex-120"
 path = "alex-dao-proposals/contracts/agp054.clar"
 depends_on = [ "alex-vault", "age000-governance-token", "auto-fwp-wstx-alex-120", "auto-fwp-wstx-alex-120x" ]
 
+[contracts.agp055]
+path = "alex-dao-proposals/contracts/agp055.clar"
+depends_on = [ "alex-reserve-pool", "fwp-wstx-wxusd-50-50-v1-01" ]
+
+
 
 
 
