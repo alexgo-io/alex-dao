@@ -707,6 +707,10 @@ depends_on = [
 path = "alex-dao-proposals/contracts/agp046.clar"
 depends_on = [ "alex-reserve-pool", "simple-weight-pool-alex", "token-wslm", "fwp-alex-wslm", "multisig-fwp-alex-wslm" ]
 
+[contracts.age006-mint-burn-apower]
+path = "alex-dao-proposals/contracts/age006-mint-burn-apower.clar"
+depends_on = [ "token-apower", "auto-alex" ]
+
 
 
 
