@@ -329,59 +329,110 @@ Clarinet.test({
   },
 });
 
+// Clarinet.test({
+//   name: "DAO: agp047/049",
+
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
+
+//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk();
+
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "age000-governance-token",
+//       200_000e8,
+//       daoAddress
+//     );
+//     result.expectOk();
+//     let block = chain.mineBlock(
+//       [
+//       Tx.contractCall("alex-reserve-pool", "add-token", 
+//         [types.principal(deployer.address + ".age000-governance-token")],
+//         deployer.address
+//       ),
+//       Tx.contractCall("alex-reserve-pool", "set-activation-block",
+//         [
+//           types.principal(deployer.address + ".age000-governance-token"),
+//           types.uint(0)
+//         ],
+//         deployer.address
+//       ),
+//       Tx.contractCall("alex-reserve-pool", "set-coinbase-amount",
+//         [
+//           types.principal(deployer.address + ".age000-governance-token"),
+//           types.uint(1e8),
+//           types.uint(1e8),
+//           types.uint(1e8),
+//           types.uint(1e8),
+//           types.uint(1e8),
+//         ],
+//         deployer.address
+//       )
+//       ]
+//     );
+//     block.receipts.forEach((e) => { e.result.expectOk() });    
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp039");
+//     result.expectOk();
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp047");
+//     result.expectOk();    
+//     chain.mineEmptyBlockUntil(57626);
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp049");
+//     result.expectOk();    
+//   },
+// });
+
 Clarinet.test({
-  name: "DAO: agp047/048",
+  name: "DAO: agp052",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
     let DAOTest = new DAO(chain, deployer);
 
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      50_000e8,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
     result.expectOk();
 
     result = await DAOTest.mintToken(
       deployer,
-      "age000-governance-token",
-      200_000e8,
+      "token-xusd",
+      50_000e8,
       daoAddress
     );
-    result.expectOk();
-    let block = chain.mineBlock(
-      [
-      Tx.contractCall("alex-reserve-pool", "add-token", 
-        [types.principal(deployer.address + ".age000-governance-token")],
-        deployer.address
-      ),
-      Tx.contractCall("alex-reserve-pool", "set-activation-block",
-        [
-          types.principal(deployer.address + ".age000-governance-token"),
-          types.uint(0)
-        ],
-        deployer.address
-      ),
-      Tx.contractCall("alex-reserve-pool", "set-coinbase-amount",
-        [
-          types.principal(deployer.address + ".age000-governance-token"),
-          types.uint(1e8),
-          types.uint(1e8),
-          types.uint(1e8),
-          types.uint(1e8),
-          types.uint(1e8),
-        ],
-        deployer.address
-      )
-      ]
-    );
-    block.receipts.forEach((e) => { e.result.expectOk() });    
+    result.expectOk();     
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp039");
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp052");
     result.expectOk();
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp047");
-    result.expectOk();    
-    chain.mineEmptyBlockUntil(57626);
+  },
+});
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp048");
+Clarinet.test({
+  name: "DAO: agp053/54",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp053");
+    result.expectOk();
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp054");
     result.expectOk();    
   },
 });
