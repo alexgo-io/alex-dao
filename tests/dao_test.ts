@@ -419,8 +419,28 @@ Clarinet.test({
   },
 });
 
+// Clarinet.test({
+//   name: "DAO: agp053/54/55",
+
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
+
+//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk(); 
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp053");
+//     result.expectOk();
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp054");
+//     result.expectOk();    
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp055");
+//     result.expectOk();        
+//   },
+// });
+
 Clarinet.test({
-  name: "DAO: agp053/54/55",
+  name: "DAO: agp058/59",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -429,12 +449,9 @@ Clarinet.test({
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp053");
-    result.expectOk();
-
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp054");
-    result.expectOk();    
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp055");
-    result.expectOk();        
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp058");
+    result.expectOk();   
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp059");
+    result.expectOk();       
   },
 });

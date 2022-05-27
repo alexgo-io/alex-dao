@@ -756,6 +756,18 @@ depends_on = [ "alex-vault", "age000-governance-token", "auto-fwp-wstx-alex-120"
 path = "alex-dao-proposals/contracts/agp055.clar"
 depends_on = [ "alex-reserve-pool", "fwp-wstx-wxusd-50-50-v1-01" ]
 
+[contracts.agp058]
+path = "alex-dao-proposals/contracts/agp058.clar"
+depends_on = [ "autoalex-apower-helper", "age000-governance-token" ]
+
+[contracts.autoalex-apower-helper]
+path = "contracts_modules/alex_v1/helpers/autoalex-apower-helper.clar"
+depends_on = [ "auto-alex", "token-apower" ]
+
+[contracts.agp059]
+path = "alex-dao-proposals/contracts/agp059.clar"
+depends_on = [ "autoalex-apower-helper", "age000-governance-token" ]
+
 
 
 
