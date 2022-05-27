@@ -768,6 +768,17 @@ depends_on = [ "auto-alex", "token-apower" ]
 path = "alex-dao-proposals/contracts/agp059.clar"
 depends_on = [ "autoalex-apower-helper", "age000-governance-token" ]
 
+[contracts.age056]
+path = "alex-dao-proposals/contracts/agp056.clar"
+depends_on = [ "age000-governance-token", "alex-reserve-pool", "fwp-wstx-alex-50-50-v1-01", "fwp-wstx-wbtc-50-50-v1-01" ]
+
+[contracts.age007-claim-and-send-stake]
+path = "alex-dao-proposals/contracts/age007-claim-and-send-stake.clar"
+depends_on = [ "executor-dao", "extension-trait", "alex-reserve-pool", "fwp-wstx-alex-50-50-v1-01", "fwp-wstx-wbtc-50-50-v1-01", "age000-governance-token", "fwp-alex-wban", "dual-farming-pool", "fwp-alex-usda", "dual-farm-diko-helper", "fwp-wstx-wxusd-50-50-v1-01" ]
+
+[contracts.agp057]
+path = "alex-dao-proposals/contracts/agp057.clar"
+depends_on = [ "age004-claim-and-stake", "age005-claim-and-stake", "age007-claim-and-send-stake" ]
 
 
 
