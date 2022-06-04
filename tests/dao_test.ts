@@ -419,25 +419,25 @@ Clarinet.test({
   },
 });
 
-// Clarinet.test({
-//   name: "DAO: agp053/54/55",
+Clarinet.test({
+  name: "DAO: agp053/54/55",
 
-//   async fn(chain: Chain, accounts: Map<string, Account>) {
-//     let deployer = accounts.get("deployer")!;
-//     let DAOTest = new DAO(chain, deployer);
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
 
-//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
-//     result.expectOk(); 
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
 
-//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp053");
-//     result.expectOk();
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp053");
+    result.expectOk();
 
-//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp054");
-//     result.expectOk();    
-//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp055");
-//     result.expectOk();        
-//   },
-// });
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp054");
+    result.expectOk();    
+    // result = await DAOTest.executiveAction(deployer, deployer.address + ".agp055");
+    // result.expectOk();        
+  },
+});
 
 Clarinet.test({
   name: "DAO: agp058/59",
@@ -453,5 +453,20 @@ Clarinet.test({
     result.expectOk();   
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp059");
     result.expectOk();       
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp060",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp060");
+    result.expectOk();
   },
 });
