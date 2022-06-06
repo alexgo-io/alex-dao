@@ -788,6 +788,14 @@ depends_on = [ "trait-semi-fungible-v1-01" ]
 path = "alex-dao-proposals/contracts/agp060.clar"
 depends_on = [ "auto-fwp-alex-autoalex-x" ]
 
+[contracts.auto-fwp-alex-autoalex-x-v1-01]
+path = "contracts_modules/alex_v1/auto-token/auto-fwp-alex-autoalex-x-v1-01.clar"
+depends_on = [ "trait-semi-fungible-v1-01" ]
+
+[contracts.agp062]
+path = "alex-dao-proposals/contracts/agp062.clar"
+depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
+
 
 
 
