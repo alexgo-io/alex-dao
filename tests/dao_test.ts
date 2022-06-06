@@ -472,3 +472,43 @@ Clarinet.test({
     result.expectOk();    
   },
 });
+
+Clarinet.test({
+  name: "DAO: agp061",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      9165650000000 + 9165650000000,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
+    result.expectOk();
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-mia",
+      2688911400000000,
+      daoAddress
+    );
+    result.expectOk();      
+
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-nycc",
+      6318941800000000,
+      daoAddress
+    );
+    result.expectOk();        
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp061");
+    result.expectOk();
+  },
+});
