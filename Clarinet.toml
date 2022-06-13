@@ -850,6 +850,14 @@ depends_on = [ "executor-dao", "extension-trait", "alex-reserve-pool", "fwp-wstx
 path = "alex-dao-proposals/contracts/agp063.clar"
 depends_on = [ "age007-claim-and-send-stake", "age008-claim-and-send-stake" ]
 
+[contracts.agp064]
+path = "alex-dao-proposals/contracts/agp064.clar"
+depends_on = [ "fwp-wstx-alex-tranched-64" ]
+
+[contracts.fwp-wstx-alex-tranched-64]
+path = "contracts_modules/alex_v1/pool/fwp-wstx-alex-tranched-64.clar"
+depends_on = [ "trait-sip-010", "trait-ownable", "age000-governance-token", "fwp-wstx-alex-50-50-v1-01", "alex-reserve-pool", "fixed-weight-pool-v1-01", "token-wstx", "age000-governance-token" ]
+
 
 
 
