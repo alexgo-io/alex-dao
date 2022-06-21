@@ -1015,11 +1015,13 @@ depends_on = [ "fwp-wstx-alex-tranched-64" ]
 path = "alex-dao-proposals/contracts/agp065.clar"
 depends_on = [ "age000-governance-token" ]
 
-[contracts.agp066]
-path = "alex-dao-proposals/contracts/agp066.clar"
-depends_on = [ "age000-governance-token", "collateral-rebalancing-pool-v1", "yield-token-pool", "yield-alex-v1", "ytp-alex-v1", "key-alex-autoalex-v1", "auto-yield-alex", "auto-ytp-alex", "auto-key-alex-autoalex", "multisig-crp-alex-autoalex-v1", "multisig-ytp-alex", "alex-vault", "alex-reserve-pool" ]
+# [contracts.agp066]
+# path = "alex-dao-proposals/contracts/agp066.clar"
+# depends_on = [ "age000-governance-token", "collateral-rebalancing-pool-v1", "yield-token-pool", "yield-alex-v1", "ytp-alex-v1", "key-alex-autoalex-v1", "auto-yield-alex", "auto-ytp-alex", "auto-key-alex-autoalex", "multisig-crp-alex-autoalex-v1", "multisig-ytp-alex", "alex-vault", "alex-reserve-pool" ]
 
-
+[contracts.agp067]
+path = "alex-dao-proposals/contracts/agp067.clar"
+depends_on = [ "alex-vault", "alex-reserve-pool", "yield-alex-v1" ]
 
 
 
