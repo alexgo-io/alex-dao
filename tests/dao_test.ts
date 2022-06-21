@@ -557,3 +557,28 @@ Clarinet.test({
     result.expectOk();
   },
 });
+
+// Clarinet.test({
+//   name: "DAO: agp066",
+
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
+
+//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk(); 
+    
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "auto-alex",
+//       1_000e8,
+//       daoAddress
+//     );
+//     result.expectOk(); 
+
+//     chain.mineEmptyBlockUntil(64451);
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp066");
+//     result.expectOk();
+//   },
+// });

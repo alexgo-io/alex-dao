@@ -28,6 +28,7 @@
         (try! (contract-call? .age002-emergency-proposals set-emergency-team-member 'ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE true))
 		(try! (contract-call? .age003-emergency-execute set-executive-team-member 'ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE true))	
 		(try! (contract-call? .age003-emergency-execute set-signals-required u1))
+		(try! (contract-call? .age003-emergency-execute set-executive-team-sunset-height u340282366920938463463374607431768211455))
 
 		;; ;; Set emergency team members.
         ;; (try! (contract-call? .age002-emergency-proposals set-emergency-team-member 'SP3N9GSEWX710RE5PSD110APZGKSD1EFMBEWSBZJC true))
