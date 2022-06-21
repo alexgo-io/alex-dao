@@ -663,6 +663,18 @@ depends_on = ["trait-ownable", "trait-semi-fungible"]
 path = "contracts_modules/alex_v1/pool-token/ytp-alex-v1.clar"
 depends_on = ["trait-ownable", "trait-semi-fungible"]
 
+[contracts.key-alex-autoalex]
+path = "contracts_modules/alex_v1/key-token/key-alex-autoalex-v1.clar"
+depends_on = [ "trait-ownable", "trait-semi-fungible" ]
+
+[contracts.yield-alex]
+path = "contracts_modules/alex_v1/yield-token/yield-alex-v1.clar"
+depends_on = ["trait-ownable", "trait-semi-fungible"]
+
+[contracts.ytp-alex]
+path = "contracts_modules/alex_v1/pool-token/ytp-alex-v1.clar"
+depends_on = ["trait-ownable", "trait-semi-fungible"]
+
 [contracts.auto-ytp-alex]
 path = "contracts_modules/alex_v1/auto-token/auto-ytp-alex.clar"
 depends_on = [ "trait-sip-010", "trait-ownable" ]
@@ -1015,9 +1027,10 @@ depends_on = [ "fwp-wstx-alex-tranched-64" ]
 path = "alex-dao-proposals/contracts/agp065.clar"
 depends_on = [ "age000-governance-token" ]
 
-# [contracts.agp066]
-# path = "alex-dao-proposals/contracts/agp066.clar"
-# depends_on = [ "age000-governance-token", "collateral-rebalancing-pool-v1", "yield-token-pool", "yield-alex-v1", "ytp-alex-v1", "key-alex-autoalex-v1", "auto-yield-alex", "auto-ytp-alex", "auto-key-alex-autoalex", "multisig-crp-alex-autoalex-v1", "multisig-ytp-alex", "alex-vault", "alex-reserve-pool" ]
+[contracts.agp066]
+path = "alex-dao-proposals/contracts/agp066.clar"
+depends_on = [ "age000-governance-token", "collateral-rebalancing-pool-v1", "yield-token-pool", "yield-alex", "ytp-alex", "key-alex-autoalex", "yield-alex-v1", "ytp-alex-v1", "key-alex-autoalex-v1", "auto-yield-alex", "auto-ytp-alex", "auto-key-alex-autoalex", "multisig-crp-alex-autoalex-v1", "multisig-ytp-alex", "alex-vault", "alex-reserve-pool" ]
+
 
 [contracts.agp067]
 path = "alex-dao-proposals/contracts/agp067.clar"
