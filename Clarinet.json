@@ -1,1 +1,1 @@
-{ "name": "alex-dao", "dependencies": { "alex_v1": { "commit": "3a06152bb1696e4d8d98904fd30a6eee0a7e2b47", "git": "git@github.com:alexgo-io/alex-v1.git", "contracts_path": "clarity/contracts" } } }
+{ "name": "alex-dao", "dependencies": { "alex_v1": { "commit": "8f693b5fb5411d30fcf6d92289265e3ebec26ffd", "git": "git@github.com:alexgo-io/alex-v1.git", "contracts_path": "clarity/contracts" } } }

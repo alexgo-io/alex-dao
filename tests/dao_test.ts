@@ -4,7 +4,7 @@ import {
   Chain,
   Account,
   types,
-} from "https://deno.land/x/clarinet@v0.14.0/index.ts";
+} from "https://deno.land/x/clarinet@v0.31.1/index.ts";
 import { assertEquals } from 'https://deno.land/std@0.90.0/testing/asserts.ts';
 
 const deployerAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE";
@@ -558,68 +558,72 @@ class DAO {
 //   },
 // });
 
+// Clarinet.test({
+//   name: "DAO: agp066",
+
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
+
+//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk();
+
+//     let block = chain.mineBlock(
+//       [
+//         Tx.contractCall("auto-alex", "mint-fixed", [types.uint(3_200e8), types.principal(daoAddress)], deployer.address),
+//         Tx.contractCall("auto-alex", "mint-fixed", [types.uint(10_000_000e8), types.principal(deployer.address)], deployer.address),
+//         Tx.contractCall("age000-governance-token", "mint-fixed", [types.uint(10_000_000e8), types.principal(deployer.address)], deployer.address),
+//         Tx.contractCall("simple-weight-pool-alex", "create-pool", 
+//         [
+//           types.principal(deployer.address + '.age000-governance-token'),
+//           types.principal(deployer.address + '.auto-alex'),
+//           types.principal(deployer.address + '.fwp-alex-autoalex'),
+//           types.principal(deployer.address + '.multisig-fwp-alex-autoalex'),
+//           types.uint(10_000_000e8),
+//           types.uint(10_000_000e8)
+//         ], deployer.address),
+//         Tx.contractCall("simple-weight-pool-alex", "set-start-block", [types.principal(deployer.address + '.age000-governance-token'), types.principal(deployer.address + '.auto-alex'),types.uint(0)], deployer.address),
+//         Tx.contractCall("simple-weight-pool-alex", "set-oracle-enabled", [types.principal(deployer.address + '.age000-governance-token'), types.principal(deployer.address + '.auto-alex')], deployer.address),
+//         Tx.contractCall("simple-weight-pool-alex", "set-oracle-average", [types.principal(deployer.address + '.age000-governance-token'), types.principal(deployer.address + '.auto-alex'),types.uint(0.95e8)], deployer.address),
+//         Tx.contractCall("alex-vault", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("alex-reserve-pool", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("simple-weight-pool-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("collateral-rebalancing-pool-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("yield-token-pool", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("key-alex-autoalex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("key-alex-autoalex-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("yield-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("yield-alex-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("ytp-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("ytp-alex-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),   
+//         Tx.contractCall("auto-yield-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
+//         Tx.contractCall("auto-ytp-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),             
+//         Tx.contractCall("auto-key-alex-autoalex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),             
+//       ]
+//     )
+//     block.receipts.forEach((e) => { e.result.expectOk() });
+
+//     chain.mineEmptyBlockUntil(64451);
+
+//     block = chain.mineBlock([
+//       Tx.contractCall("age003-emergency-execute", "executive-action", [types.principal(deployer.address + ".agp066")], deployer.address),
+//     ]);
+//     block.receipts[0].result.expectOk();
+//     console.log(block.receipts[0].events);
+//   },
+// });
+
 Clarinet.test({
-<<<<<<< HEAD
-  name: "DAO: agp067",
-=======
-  name: "DAO: agp066",
->>>>>>> ec6de325bec4f329c45b40c4bbc270e36838c086
+  name: "DAO: agp069",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
     let DAOTest = new DAO(chain, deployer);
 
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
-<<<<<<< HEAD
     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp067");
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp069");
     result.expectOk();
-=======
-    result.expectOk();
-
-    let block = chain.mineBlock(
-      [
-        Tx.contractCall("auto-alex", "mint-fixed", [types.uint(3_200e8), types.principal(daoAddress)], deployer.address),
-        Tx.contractCall("auto-alex", "mint-fixed", [types.uint(10_000_000e8), types.principal(deployer.address)], deployer.address),
-        Tx.contractCall("age000-governance-token", "mint-fixed", [types.uint(10_000_000e8), types.principal(deployer.address)], deployer.address),
-        Tx.contractCall("simple-weight-pool-alex", "create-pool", 
-        [
-          types.principal(deployer.address + '.age000-governance-token'),
-          types.principal(deployer.address + '.auto-alex'),
-          types.principal(deployer.address + '.fwp-alex-autoalex'),
-          types.principal(deployer.address + '.multisig-fwp-alex-autoalex'),
-          types.uint(10_000_000e8),
-          types.uint(10_000_000e8)
-        ], deployer.address),
-        Tx.contractCall("simple-weight-pool-alex", "set-start-block", [types.principal(deployer.address + '.age000-governance-token'), types.principal(deployer.address + '.auto-alex'),types.uint(0)], deployer.address),
-        Tx.contractCall("simple-weight-pool-alex", "set-oracle-enabled", [types.principal(deployer.address + '.age000-governance-token'), types.principal(deployer.address + '.auto-alex')], deployer.address),
-        Tx.contractCall("simple-weight-pool-alex", "set-oracle-average", [types.principal(deployer.address + '.age000-governance-token'), types.principal(deployer.address + '.auto-alex'),types.uint(0.95e8)], deployer.address),
-        Tx.contractCall("alex-vault", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("alex-reserve-pool", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("simple-weight-pool-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("collateral-rebalancing-pool-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("yield-token-pool", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("key-alex-autoalex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("key-alex-autoalex-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("yield-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("yield-alex-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("ytp-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("ytp-alex-v1", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),   
-        Tx.contractCall("auto-yield-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),
-        Tx.contractCall("auto-ytp-alex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),             
-        Tx.contractCall("auto-key-alex-autoalex", "set-contract-owner", [types.principal(deployer.address + '.executor-dao')], deployer.address),             
-      ]
-    )
-    block.receipts.forEach((e) => { e.result.expectOk() });
-
-    chain.mineEmptyBlockUntil(64451);
-
-    block = chain.mineBlock([
-      Tx.contractCall("age003-emergency-execute", "executive-action", [types.principal(deployer.address + ".agp066")], deployer.address),
-    ]);
-    block.receipts[0].result.expectOk();
-    console.log(block.receipts[0].events);
->>>>>>> ec6de325bec4f329c45b40c4bbc270e36838c086
   },
 });
