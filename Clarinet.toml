@@ -1044,6 +1044,18 @@ depends_on = [ "alex-vault", "simple-weight-pool-alex", "age000-governance-token
 path = "alex-dao-proposals/contracts/agp069.clar"
 depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
 
+[contracts.agp070]
+path = "alex-dao-proposals/contracts/agp070.clar"
+depends_on = [ "collateral-rebalancing-pool-v1" ]
+
+[contracts.agp071]
+path = "alex-dao-proposals/contracts/agp071.clar"
+depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
+
+[contracts.agp072]
+path = "alex-dao-proposals/contracts/agp072.clar"
+depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
+
 
 
 
