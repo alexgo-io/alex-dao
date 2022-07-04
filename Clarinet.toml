@@ -1060,6 +1060,14 @@ depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
 path = "alex-dao-proposals/contracts/agp073.clar"
 depends_on = [ "age000-governance-token", "collateral-rebalancing-pool-v1", "yield-token-pool", "yield-alex", "ytp-alex", "key-alex-autoalex", "yield-alex-v1", "ytp-alex-v1", "key-alex-autoalex-v1", "auto-yield-alex", "auto-ytp-alex", "auto-key-alex-autoalex", "multisig-crp-alex-autoalex-v1", "multisig-ytp-alex", "alex-vault", "alex-reserve-pool" ]
 
+[contracts.agp074]
+path = "alex-dao-proposals/contracts/agp074.clar"
+depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
+
+[contracts.agp076]
+path = "alex-dao-proposals/contracts/agp076.clar"
+depends_on = [ "alex-lottery", "age000-governance-token", "token-apower" ]
+
 
 
 

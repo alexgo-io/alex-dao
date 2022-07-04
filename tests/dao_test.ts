@@ -613,8 +613,23 @@ class DAO {
 //   },
 // });
 
+// Clarinet.test({
+//   name: "DAO: agp069",
+
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
+
+//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk(); 
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp069");
+//     result.expectOk();
+//   },
+// });
+
 Clarinet.test({
-  name: "DAO: agp069",
+  name: "DAO: agp076",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -623,7 +638,7 @@ Clarinet.test({
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp069");
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp076");
     result.expectOk();
   },
 });
