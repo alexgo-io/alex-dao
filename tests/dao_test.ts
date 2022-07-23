@@ -629,16 +629,24 @@ class DAO {
 // });
 
 Clarinet.test({
-  name: "DAO: agp076",
+  name: "DAO: agp077",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
     let DAOTest = new DAO(chain, deployer);
 
-    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    let result: any = await DAOTest.mintToken(
+      deployer,
+      "age000-governance-token",
+      26260e8,
+      daoAddress
+    );
+    result.expectOk();  
+
+    result = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp076");
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp077");
     result.expectOk();
   },
 });
