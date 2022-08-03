@@ -1072,6 +1072,10 @@ depends_on = [ "alex-lottery", "age000-governance-token", "token-apower" ]
 path = "alex-dao-proposals/contracts/agp077.clar"
 depends_on = [ "age000-governance-token" ]
 
+[contracts.agp081]
+path = "alex-dao-proposals/contracts/agp081.clar"
+depends_on = [ "fwp-wstx-wmia-50-50-v1-01", "fwp-wstx-wnycc-50-50-v1-01" ]
+
 
 
 
