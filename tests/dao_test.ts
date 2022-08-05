@@ -651,8 +651,39 @@ Clarinet.test({
   },
 });
 
+// Clarinet.test({
+//   name: "DAO: agp081",
+
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
+
+//     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk(); 
+
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "fwp-wstx-wmia-50-50-v1-01",
+//       100e8,
+//       daoAddress
+//     );
+//     result.expectOk();
+
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "fwp-wstx-wnycc-50-50-v1-01",
+//       100e8,
+//       daoAddress
+//     );
+//     result.expectOk();           
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp081");
+//     result.expectOk();
+//   },
+// });
+
 Clarinet.test({
-  name: "DAO: agp081",
+  name: "DAO: agp082",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -661,23 +692,56 @@ Clarinet.test({
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
+    result = await DAOTest.transferToken(
+      deployer,
+      "token-wstx",
+      51266e8,
+      daoAddress,
+      new ArrayBuffer(4)
+    );
+    result.expectOk();
+
     result = await DAOTest.mintToken(
       deployer,
-      "fwp-wstx-wmia-50-50-v1-01",
-      100e8,
+      "auto-alex",
+      84401e8,
       daoAddress
     );
     result.expectOk();
 
     result = await DAOTest.mintToken(
       deployer,
-      "fwp-wstx-wnycc-50-50-v1-01",
-      100e8,
+      "token-mia",
+      108469e8,
       daoAddress
     );
-    result.expectOk();           
+    result.expectOk();      
+    
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-nycc",
+      201016e8,
+      daoAddress
+    );
+    result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp081");
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-slime",
+      39842e8,
+      daoAddress
+    );
+    result.expectOk();    
+    
+    result = await DAOTest.mintToken(
+      deployer,
+      "token-diko",
+      78687e8,
+      daoAddress
+    );
+    result.expectOk();       
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp082");
     result.expectOk();
   },
 });
