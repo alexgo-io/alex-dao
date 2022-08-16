@@ -1084,6 +1084,10 @@ depends_on = [ "token-wmia", "token-wnycc", "token-wslm", "token-wdiko", "auto-a
 path = "alex-dao-proposals/contracts/agp084.clar"
 depends_on = [ "token-wmia", "token-wnycc", "token-wslm", "token-wdiko", "auto-alex" ]
 
+[contracts.agp087]
+path = "alex-dao-proposals/contracts/agp087.clar"
+depends_on = [ "alex-reserve-pool", "alex-vault", "auto-alex", "collateral-rebalancing-pool-v1" ]
+
 
 
 
