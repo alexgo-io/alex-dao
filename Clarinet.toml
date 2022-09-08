@@ -1088,6 +1088,10 @@ depends_on = [ "token-wmia", "token-wnycc", "token-wslm", "token-wdiko", "auto-a
 path = "alex-dao-proposals/contracts/agp087.clar"
 depends_on = [ "alex-reserve-pool", "alex-vault", "auto-alex", "collateral-rebalancing-pool-v1" ]
 
+[contracts.agp089]
+path = "alex-dao-proposals/contracts/agp089.clar"
+depends_on = [ "weighted-equation-v1-01", "simple-equation" ]
+
 
 
 
