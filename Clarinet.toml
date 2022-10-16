@@ -1068,6 +1068,10 @@ depends_on = [ "auto-fwp-alex-autoalex-x-v1-01" ]
 path = "alex-dao-proposals/contracts/agp076.clar"
 depends_on = [ "alex-lottery", "age000-governance-token", "token-apower" ]
 
+[contracts.age004-token-lock]
+path = "contracts/extensions/age004-token-lock.clar"
+depends_on = ["executor-dao", "extension-trait"]
+
 
 
 

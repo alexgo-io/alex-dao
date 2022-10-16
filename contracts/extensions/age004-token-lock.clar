@@ -1,4 +1,5 @@
 (impl-trait .extension-trait.extension-trait)
+(use-trait extension-trait .extension-trait.extension-trait)
 
 (define-constant ERR-NOT-AUTHORIZED (err u1000))
 (define-constant ERR-SCHEDULE-NOT-FOUND (err u1001))
@@ -13,7 +14,7 @@
 )
 
 (define-public (is-dao-or-extension)
-	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) err-unauthorised))
+	(ok (asserts! (or (is-eq tx-sender .executor-dao) (contract-call? .executor-dao is-extension contract-caller)) ERR-NOT-AUTHORIZED))
 )
 
 (define-read-only (get-tokens-to-vest)
@@ -29,11 +30,11 @@
 )
 
 (define-private (set-vesting-schedule-iter (item { address: principal, vesting-id: uint, vesting-timestamp: uint, amount: uint }))
-    (set-token-schedule (get address item) (get vesting-id item) (get vesting-timestamp item) (get amount item))
+    (set-vesting-schedule (get address item) (get vesting-id item) (get vesting-timestamp item) (get amount item))
 )
 
 (define-public (set-vesting-schedule-many (items (list 200 { address: principal, vesting-id: uint, vesting-timestamp: uint, amount: uint })))
-    (ok (map set-token-schedule-iter items))
+    (ok (map set-vesting-schedule-iter items))
 )
 
 (define-read-only (get-vesting-schedule-or-fail (address principal) (vesting-id uint))
@@ -43,8 +44,7 @@
 (define-public (get-tokens (extension <extension-trait>) (vesting-id uint))
     (begin
         (asserts! (is-eq (contract-of extension) (as-contract tx-sender)) ERR-EXTENSION-NOT-AUTHORIZED)
-        ;; TODO: need to convert vesting-id into (buff 34)
-        (contract-call? .executor-dao request-extension-callback extension vesting-id-in-buff)
+        (contract-call? .executor-dao request-extension-callback extension (uint-to-buff-be vesting-id))
     )
 )
 
@@ -72,7 +72,7 @@
 (define-public (callback (sender principal) (memo (buff 34)))
     (let 
         (
-            ;; TODO: (buff 34) to uint    
+            (vesting-id (buff-to-uint memo))
             (schedule (try! (get-vesting-schedule-or-fail sender vesting-id)))
         )
         (asserts! (> (unwrap-panic (get-block-info? time (- block-height u1))) (get vesting-timestamp schedule)) ERR-BLOCK-HEIGHT-NOT-REACHED)
@@ -86,29 +86,24 @@
 ;; @desc buff-to-uint
 ;; @params bytes
 ;; @returns uint
-(define-private (buff-to-uint (bytes (buff 16)))
-    (let
-        (
-            (reverse-bytes (reverse-buff bytes))
-        )
-        (+
-            (match (element-at reverse-bytes u0) byte (byte-to-uint byte) u0)
-            (match (element-at reverse-bytes u1) byte (* (byte-to-uint byte) u256) u0)
-            (match (element-at reverse-bytes u2) byte (* (byte-to-uint byte) u65536) u0)
-            (match (element-at reverse-bytes u3) byte (* (byte-to-uint byte) u16777216) u0)
-            (match (element-at reverse-bytes u4) byte (* (byte-to-uint byte) u4294967296) u0)
-            (match (element-at reverse-bytes u5) byte (* (byte-to-uint byte) u1099511627776) u0)
-            (match (element-at reverse-bytes u6) byte (* (byte-to-uint byte) u281474976710656) u0)
-            (match (element-at reverse-bytes u7) byte (* (byte-to-uint byte) u72057594037927936) u0)
-            (match (element-at reverse-bytes u8) byte (* (byte-to-uint byte) u18446744073709551616) u0)
-            (match (element-at reverse-bytes u9) byte (* (byte-to-uint byte) u4722366482869645213696) u0)
-            (match (element-at reverse-bytes u10) byte (* (byte-to-uint byte) u1208925819614629174706176) u0)
-            (match (element-at reverse-bytes u11) byte (* (byte-to-uint byte) u309485009821345068724781056) u0)
-            (match (element-at reverse-bytes u12) byte (* (byte-to-uint byte) u79228162514264337593543950336) u0)
-            (match (element-at reverse-bytes u13) byte (* (byte-to-uint byte) u20282409603651670423947251286016) u0)
-            (match (element-at reverse-bytes u14) byte (* (byte-to-uint byte) u5192296858534827628530496329220096) u0)
-            (match (element-at reverse-bytes u15) byte (* (byte-to-uint byte) u1329227995784915872903807060280344576) u0)
-        )
+(define-private (buff-to-uint (bytes (buff 34)))
+    (+
+        (match (element-at bytes u0) byte (* (byte-to-uint byte) u1329227995784915872903807060280344576) u0)
+        (match (element-at bytes u1) byte (* (byte-to-uint byte) u5192296858534827628530496329220096) u0)
+        (match (element-at bytes u2) byte (* (byte-to-uint byte) u20282409603651670423947251286016) u0)
+        (match (element-at bytes u3) byte (* (byte-to-uint byte) u79228162514264337593543950336) u0)
+        (match (element-at bytes u4) byte (* (byte-to-uint byte) u309485009821345068724781056) u0)
+        (match (element-at bytes u5) byte (* (byte-to-uint byte) u1208925819614629174706176) u0)
+        (match (element-at bytes u6) byte (* (byte-to-uint byte) u4722366482869645213696) u0)
+        (match (element-at bytes u7) byte (* (byte-to-uint byte) u18446744073709551616) u0)
+        (match (element-at bytes u8) byte (* (byte-to-uint byte) u72057594037927936) u0)
+        (match (element-at bytes u9) byte (* (byte-to-uint byte) u281474976710656) u0)
+        (match (element-at bytes u10) byte (* (byte-to-uint byte) u1099511627776) u0)
+        (match (element-at bytes u11) byte (* (byte-to-uint byte) u4294967296) u0)
+        (match (element-at bytes u12) byte (* (byte-to-uint byte) u16777216) u0)
+        (match (element-at bytes u13) byte (* (byte-to-uint byte) u65536) u0)
+        (match (element-at bytes u14) byte (* (byte-to-uint byte) u256) u0)
+        (match (element-at bytes u15) byte (byte-to-uint byte) u0)
     )
 )
 
@@ -139,18 +134,26 @@
     (unwrap-panic (index-of BUFF-TO-BYTE byte))
 )
 
-;; @desc concat-buff
-;; @params a
-;; @params b
-;; @returns buff
-(define-private (concat-buff (a (buff 16)) (b (buff 16)))
-    (unwrap-panic (as-max-len? (concat a b) u16))
+(define-read-only (uint-to-buff-be (n uint))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u1329227995784915872903807060280344576) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u5192296858534827628530496329220096) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u20282409603651670423947251286016) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u79228162514264337593543950336) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u309485009821345068724781056) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u1208925819614629174706176) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u4722366482869645213696) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u18446744073709551616) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u72057594037927936) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u281474976710656) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u1099511627776) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u4294967296) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u16777216) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u65536) u256)))
+	(concat (unwrap-panic (element-at byte-list (mod (/ n u256) u256)))
+			(unwrap-panic (element-at byte-list (mod n u256)))
+	)))))))))))))))
 )
 
-;; @desc reverse-buff
-;; @params a
-;; @returns buff
-(define-read-only (reverse-buff (a (buff 16)))
-    (fold concat-buff a 0x)
-)
+(define-constant byte-list 0x000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182838485868788898a8b8c8d8e8f909192939495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aaabacadaeafb0b1b2b3b4b5b6b7b8b9babbbcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcccdcecfd0d1d2d3d4d5d6d7d8d9dadbdcdddedfe0e1e2e3e4e5e6e7e8e9eaebecedeeeff0f1f2f3f4f5f6f7f8f9fafbfcfdfeff)
+
 
