@@ -1092,6 +1092,14 @@ depends_on = [ "alex-reserve-pool", "alex-vault", "auto-alex", "collateral-rebal
 path = "alex-dao-proposals/contracts/agp089.clar"
 depends_on = [ "weighted-equation-v1-01", "simple-equation" ]
 
+[contracts.age009-token-lock]
+path = "alex-dao-proposals/contracts/age009-token-lock.clar"
+depends_on = [ "executor-dao" ]
+
+[contracts.agp091]
+path = "alex-dao-proposals/contracts/agp091.clar"
+depends_on = [ "proposal-trait", "executor-dao" ]
+
 
 
 

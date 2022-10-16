@@ -628,31 +628,62 @@ class DAO {
 //   },
 // });
 
-Clarinet.test({
-  name: "DAO: agp077",
+// Clarinet.test({
+//   name: "DAO: agp077",
 
-  async fn(chain: Chain, accounts: Map<string, Account>) {
-    let deployer = accounts.get("deployer")!;
-    let DAOTest = new DAO(chain, deployer);
+//   async fn(chain: Chain, accounts: Map<string, Account>) {
+//     let deployer = accounts.get("deployer")!;
+//     let DAOTest = new DAO(chain, deployer);
 
-    let result: any = await DAOTest.mintToken(
-      deployer,
-      "age000-governance-token",
-      26260e8,
-      daoAddress
-    );
-    result.expectOk();  
+//     let result: any = await DAOTest.mintToken(
+//       deployer,
+//       "age000-governance-token",
+//       26260e8,
+//       daoAddress
+//     );
+//     result.expectOk();  
 
-    result = await DAOTest.construct(deployer, bootstrapAddress);
-    result.expectOk(); 
+//     result = await DAOTest.construct(deployer, bootstrapAddress);
+//     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp077");
-    result.expectOk();
-  },
-});
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp077");
+//     result.expectOk();
+//   },
+// });
+
+// // Clarinet.test({
+// //   name: "DAO: agp081",
+
+// //   async fn(chain: Chain, accounts: Map<string, Account>) {
+// //     let deployer = accounts.get("deployer")!;
+// //     let DAOTest = new DAO(chain, deployer);
+
+// //     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+// //     result.expectOk(); 
+
+// //     result = await DAOTest.mintToken(
+// //       deployer,
+// //       "fwp-wstx-wmia-50-50-v1-01",
+// //       100e8,
+// //       daoAddress
+// //     );
+// //     result.expectOk();
+
+// //     result = await DAOTest.mintToken(
+// //       deployer,
+// //       "fwp-wstx-wnycc-50-50-v1-01",
+// //       100e8,
+// //       daoAddress
+// //     );
+// //     result.expectOk();           
+
+// //     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp081");
+// //     result.expectOk();
+// //   },
+// // });
 
 // Clarinet.test({
-//   name: "DAO: agp081",
+//   name: "DAO: agp082",
 
 //   async fn(chain: Chain, accounts: Map<string, Account>) {
 //     let deployer = accounts.get("deployer")!;
@@ -661,87 +692,96 @@ Clarinet.test({
 //     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
 //     result.expectOk(); 
 
+//     result = await DAOTest.transferToken(
+//       deployer,
+//       "token-wstx",
+//       51266e8,
+//       daoAddress,
+//       new ArrayBuffer(4)
+//     );
+//     result.expectOk();
+
 //     result = await DAOTest.mintToken(
 //       deployer,
-//       "fwp-wstx-wmia-50-50-v1-01",
-//       100e8,
+//       "auto-alex",
+//       84401e8,
 //       daoAddress
 //     );
 //     result.expectOk();
 
 //     result = await DAOTest.mintToken(
 //       deployer,
-//       "fwp-wstx-wnycc-50-50-v1-01",
-//       100e8,
+//       "token-mia",
+//       108469e8,
 //       daoAddress
 //     );
-//     result.expectOk();           
+//     result.expectOk();      
+    
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "token-nycc",
+//       201016e8,
+//       daoAddress
+//     );
+//     result.expectOk(); 
 
-//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp081");
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "token-slime",
+//       39842e8,
+//       daoAddress
+//     );
+//     result.expectOk();    
+    
+//     result = await DAOTest.mintToken(
+//       deployer,
+//       "token-diko",
+//       78687e8,
+//       daoAddress
+//     );
+//     result.expectOk();       
+
+//     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp082");
 //     result.expectOk();
 //   },
 // });
 
 Clarinet.test({
-  name: "DAO: agp082",
+  name: "DAO: age009, agp091",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
+    let wallet_1 = accounts.get("wallet_1")!;
     let DAOTest = new DAO(chain, deployer);
 
-    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    let result: any = await DAOTest.mintToken(
+      deployer,
+      "age000-governance-token",
+      10000e8,
+      daoAddress
+    );
+    result.expectOk();  
+
+    result = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
-    result = await DAOTest.transferToken(
-      deployer,
-      "token-wstx",
-      51266e8,
-      daoAddress,
-      new ArrayBuffer(4)
-    );
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp091");
     result.expectOk();
 
-    result = await DAOTest.mintToken(
-      deployer,
-      "auto-alex",
-      84401e8,
-      daoAddress
-    );
-    result.expectOk();
-
-    result = await DAOTest.mintToken(
-      deployer,
-      "token-mia",
-      108469e8,
-      daoAddress
-    );
-    result.expectOk();      
-    
-    result = await DAOTest.mintToken(
-      deployer,
-      "token-nycc",
-      201016e8,
-      daoAddress
-    );
-    result.expectOk(); 
-
-    result = await DAOTest.mintToken(
-      deployer,
-      "token-slime",
-      39842e8,
-      daoAddress
-    );
-    result.expectOk();    
-    
-    result = await DAOTest.mintToken(
-      deployer,
-      "token-diko",
-      78687e8,
-      daoAddress
-    );
-    result.expectOk();       
-
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp082");
-    result.expectOk();
+    // (define-public (set-vesting-schedule (address principal) (vesting-id uint) (vesting-timestamp uint) (amount uint))
+    // (define-public (get-tokens (extension <extension-trait>) (vesting-id uint))        
+    let block = chain.mineBlock(
+      [
+        Tx.contractCall("age009-token-lock", "get-tokens",
+          [
+            types.principal(deployer.address + ".age009-token-lock"),
+            types.uint(1)
+          ], wallet_1.address)
+      ]
+    )
+    block.receipts.forEach((e) => {       
+      e.result.expectOk();
+      console.log(e.events);
+    });    
   },
 });
