@@ -776,12 +776,16 @@ Clarinet.test({
           [
             types.principal(deployer.address + ".age009-token-lock"),
             types.uint(1)
-          ], wallet_1.address)
+          ], wallet_1.address),
+        Tx.contractCall("age009-token-lock", "get-tokens",
+          [
+            types.principal(deployer.address + ".age009-token-lock"),
+            types.uint(2)
+          ], wallet_1.address)          
       ]
     )
-    block.receipts.forEach((e) => {       
-      e.result.expectOk();
-      console.log(e.events);
-    });    
+    block.receipts[0].result.expectOk();
+    block.receipts[1].result.expectErr();
+    console.log(block.receipts[0].events); 
   },
 });
