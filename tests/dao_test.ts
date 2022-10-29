@@ -747,45 +747,29 @@ class DAO {
 // });
 
 Clarinet.test({
-  name: "DAO: age009, agp091",
+  name: "DAO: age009, agp091, agp092",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
     let wallet_1 = accounts.get("wallet_1")!;
     let DAOTest = new DAO(chain, deployer);
 
-    let result: any = await DAOTest.mintToken(
-      deployer,
-      "age000-governance-token",
-      10000e8,
-      daoAddress
-    );
-    result.expectOk();  
+    // let result: any = await DAOTest.mintToken(
+    //   deployer,
+    //   "age000-governance-token",
+    //   10000e8,
+    //   daoAddress
+    // );
+    // result.expectOk();  
 
-    result = await DAOTest.construct(deployer, bootstrapAddress);
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp091");
     result.expectOk();
-
-    // (define-public (set-vesting-schedule (address principal) (vesting-id uint) (vesting-timestamp uint) (amount uint))
-    // (define-public (get-tokens (extension <extension-trait>) (vesting-id uint))        
-    let block = chain.mineBlock(
-      [
-        Tx.contractCall("age009-token-lock", "get-tokens",
-          [
-            types.principal(deployer.address + ".age009-token-lock"),
-            types.uint(1)
-          ], wallet_1.address),
-        Tx.contractCall("age009-token-lock", "get-tokens",
-          [
-            types.principal(deployer.address + ".age009-token-lock"),
-            types.uint(2)
-          ], wallet_1.address)          
-      ]
-    )
-    block.receipts[0].result.expectOk();
-    block.receipts[1].result.expectErr();
-    console.log(block.receipts[0].events); 
+  
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp092");
+    result.expectOk();
+    console.log(result);
   },
 });
