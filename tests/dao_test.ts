@@ -747,7 +747,7 @@ class DAO {
 // });
 
 Clarinet.test({
-  name: "DAO: age009, agp091, agp092",
+  name: "DAO: age009, agp091, agp092, agp093",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -770,6 +770,10 @@ Clarinet.test({
   
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp092");
     result.expectOk();
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp093");
+    result.expectOk();
+
     console.log(result);
   },
 });
