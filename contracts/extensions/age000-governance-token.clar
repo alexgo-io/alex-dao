@@ -274,6 +274,11 @@
 (map-set approved-contracts .exchange true)
 (map-set approved-contracts .faucet true)
 (map-set approved-contracts tx-sender true)
+(map-set approved-contracts .auto-fwp-alex-autoalex-x-v1-01 true)
+(map-set approved-contracts .auto-fwp-alex-autoalex-x true)
+(map-set approved-contracts .auto-fwp-alex-usda-100x true)
+(map-set approved-contracts .auto-fwp-wstx-alex-120x true)
+(map-set approved-contracts .fwp-wstx-alex-tranched-64 true)
 
 
 
