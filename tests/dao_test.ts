@@ -8,17 +8,8 @@ import {
 import { assertEquals } from 'https://deno.land/std@0.90.0/testing/asserts.ts';
 
 const deployerAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE";
-
-const daoAddress = deployerAddress + ".executor-dao";
 const bootstrapAddress = deployerAddress + ".agp000-bootstrap";
-const agp029Address = deployerAddress + ".agp029";               
-const agp030Address = deployerAddress + ".agp030";   
-const agp031Address = deployerAddress + ".agp031";   
-const agp035Address = deployerAddress + ".agp035";    
-const agp036Address = deployerAddress + ".agp036";   
-const agp039Address = deployerAddress + ".agp039";   
-const age004Address = deployerAddress + ".age004-claim-and-stake";
-const age003Address = deployerAddress + ".age003-emergency-execute";
+
 class DAO {
   chain: Chain;
   deployer: Account;
@@ -747,7 +738,7 @@ class DAO {
 // });
 
 Clarinet.test({
-  name: "DAO: age009, agp091, agp092, agp093, agp094",
+  name: "DAO: age009, agp091, agp092, agp093, agp094, agp097",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -775,7 +766,10 @@ Clarinet.test({
     result.expectOk();
 
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp094");
-    result.expectOk();    
+    result.expectOk();  
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp097");
+    result.expectOk();      
 
     console.log(result);
   },
