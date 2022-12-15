@@ -4,8 +4,8 @@ import {
   Chain,
   Account,
   types,
-} from "https://deno.land/x/clarinet@v0.31.1/index.ts";
-import { assertEquals } from 'https://deno.land/std@0.90.0/testing/asserts.ts';
+} from "https://deno.land/x/clarinet@v0.34.0/index.ts";
+import { assertEquals } from 'https://deno.land/std@0.166.0/testing/asserts.ts';
 
 const deployerAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE";
 const bootstrapAddress = deployerAddress + ".agp000-bootstrap";
@@ -738,7 +738,7 @@ class DAO {
 // });
 
 Clarinet.test({
-  name: "DAO: age009, agp091, agp092, agp093, agp094, agp097, agp098, agp099",
+  name: "DAO: age009, agp091, agp092, agp093, agp094, agp097, agp098, agp099, agp101",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -775,7 +775,10 @@ Clarinet.test({
     result.expectOk();          
 
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp099");
-    result.expectOk();              
+    result.expectOk();     
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp101");
+    result.expectOk();         
 
     console.log(result);
   },
