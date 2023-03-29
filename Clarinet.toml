@@ -1135,6 +1135,9 @@ depends_on = [ "proposal-trait", "executor-dao", "age000-governance-token", "age
 [contracts.agp100]
 path = "alex-dao-proposals/contracts/agp100.clar"
 
+[contracts.agp101]
+path = "alex-dao-proposals/contracts/agp101.clar"
+
 [contracts.agp102]
 path = "alex-dao-proposals/contracts/agp102.clar"
 
