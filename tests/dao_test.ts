@@ -4,8 +4,8 @@ import {
   Chain,
   Account,
   types,
-} from "https://deno.land/x/clarinet@v0.31.1/index.ts";
-import { assertEquals } from 'https://deno.land/std@0.90.0/testing/asserts.ts';
+} from "https://deno.land/x/clarinet@v0.34.0/index.ts";
+import { assertEquals } from 'https://deno.land/std@0.166.0/testing/asserts.ts';
 
 const deployerAddress = "ST1HTBVD3JG9C05J7HBJTHGR0GGW7KXW28M5JS8QE";
 const bootstrapAddress = deployerAddress + ".agp000-bootstrap";
@@ -777,6 +777,60 @@ Clarinet.test({
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp099");
     result.expectOk();              
 
-    console.log(result);
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp100, agp102",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let wallet_1 = accounts.get("wallet_1")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp100");
+    result.expectOk();       
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp102");
+    result.expectOk();           
+
+  },
+});
+
+Clarinet.test({
+  name: "DAO: agp114, agp115, agp117, agp121, agp130, agp131, agp132",
+
+  async fn(chain: Chain, accounts: Map<string, Account>) {
+    let deployer = accounts.get("deployer")!;
+    let wallet_1 = accounts.get("wallet_1")!;
+    let DAOTest = new DAO(chain, deployer);
+
+    let result: any = await DAOTest.construct(deployer, bootstrapAddress);
+    result.expectOk(); 
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp114");
+    result.expectOk();     
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp115");
+    result.expectOk();  
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp117");
+    result.expectOk();     
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp123");
+    result.expectOk();         
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp130");
+    result.expectOk();             
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp131");
+    result.expectOk();     
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp132");
+    result.expectOk();         
+
   },
 });

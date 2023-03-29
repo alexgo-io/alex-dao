@@ -1132,6 +1132,76 @@ depends_on = [ "proposal-trait", "executor-dao", "age000-governance-token", "age
 path = "alex-dao-proposals/contracts/agp099.clar"
 depends_on = [ "proposal-trait", "executor-dao", "age000-governance-token", "age009-token-lock" ]
 
+[contracts.agp100]
+path = "alex-dao-proposals/contracts/agp100.clar"
+
+[contracts.agp102]
+path = "alex-dao-proposals/contracts/agp102.clar"
+
+[contracts.agp103]
+path = "alex-dao-proposals/contracts/agp103.clar"
+
+[contracts.agp104]
+path = "alex-dao-proposals/contracts/agp104.clar"
+
+[contracts.agp105]
+path = "alex-dao-proposals/contracts/agp105.clar"
+
+[contracts.agp106]
+path = "alex-dao-proposals/contracts/agp106.clar"
+
+[contracts.agp107]
+path = "alex-dao-proposals/contracts/agp107.clar"
+
+[contracts.agp108]
+path = "alex-dao-proposals/contracts/agp108.clar"
+
+[contracts.agp109]
+path = "alex-dao-proposals/contracts/agp109.clar"
+
+[contracts.bridge-endpoint]
+path = "contracts_modules/alex_v1/bridge/bridge-endpoint.clar"
+
+[contracts.agp114]
+path = "alex-dao-proposals/contracts/agp114.clar"
+
+[contracts.agp115]
+path = "alex-dao-proposals/contracts/agp115.clar"
+
+[contracts.agp117]
+path = "alex-dao-proposals/contracts/agp117.clar"
+
+[contracts.amm-swap-pool]
+path = "contracts_modules/alex_v1/pool/amm-swap-pool.clar"
+
+[contracts.token-amm-swap-pool]
+path = "contracts_modules/alex_v1/pool-token/token-amm-swap-pool.clar"
+
+
+[contracts.flash-loan-user-usda-to-xusd]
+path = "contracts_modules/alex_v1/flash-loan-user-usda-to-xusd.clar"
+
+[contracts.flash-loan-user-xusd-to-usda]
+path = "contracts_modules/alex_v1/flash-loan-user-xusd-to-usda.clar"
+
+[contracts.agp123]
+path = "alex-dao-proposals/contracts/agp123.clar"
+
+[contracts.agp125]
+path = "alex-dao-proposals/contracts/agp125.clar"
+
+[contracts.agp129]
+path = "alex-dao-proposals/contracts/agp129.clar"
+
+[contracts.agp130]
+path = "alex-dao-proposals/contracts/agp130.clar"
+
+[contracts.agp131]
+path = "alex-dao-proposals/contracts/agp131.clar"
+
+[contracts.agp132]
+path = "alex-dao-proposals/contracts/agp132.clar"
+
 
 
 
