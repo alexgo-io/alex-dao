@@ -1205,6 +1205,12 @@ path = "alex-dao-proposals/contracts/agp131.clar"
 [contracts.agp132]
 path = "alex-dao-proposals/contracts/agp132.clar"
 
+[contracts.age011-claim-and-send-stake]
+path = "alex-dao-proposals/contracts/age011-claim-and-send-stake.clar"
+
+[contracts.agp134]
+path = "alex-dao-proposals/contracts/agp134.clar"
+
 
 
 
