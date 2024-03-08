@@ -64,6 +64,17 @@ depends_on = [
   "token-apower"
 ]
 
+[contracts.alex-reserve-pool-sft]
+path = "contracts_modules/alex_v1/pool/alex-reserve-pool-sft.clar"
+depends_on = [
+  "trait-ownable",
+  "trait-sip-010",
+  "alex-vault-v1-1",
+  "age000-governance-token",
+  "token-apower",
+  "trait-semi-fungible"
+]
+
 [contracts.futures-pool]
 path = "contracts_modules/alex_v1/pool/futures-pool.clar"
 depends_on = [
@@ -79,6 +90,16 @@ depends_on = [ "alex-reserve-pool", "trait-sip-010" ]
 
 [contracts.alex-vault]
 path = "contracts_modules/alex_v1/alex-vault.clar"
+depends_on = [
+  "trait-vault",
+  "trait-sip-010",
+  "trait-flash-loan-user",
+  "trait-ownable",
+  "trait-semi-fungible"
+]
+
+[contracts.alex-vault-v1-1]
+path = "contracts_modules/alex_v1/alex-vault-v1-1.clar"
 depends_on = [
   "trait-vault",
   "trait-sip-010",
@@ -1162,18 +1183,6 @@ path = "alex-dao-proposals/contracts/agp108.clar"
 [contracts.agp109]
 path = "alex-dao-proposals/contracts/agp109.clar"
 
-[contracts.bridge-endpoint]
-path = "contracts_modules/alex_v1/bridge/bridge-endpoint.clar"
-
-[contracts.agp114]
-path = "alex-dao-proposals/contracts/agp114.clar"
-
-[contracts.agp115]
-path = "alex-dao-proposals/contracts/agp115.clar"
-
-[contracts.agp117]
-path = "alex-dao-proposals/contracts/agp117.clar"
-
 [contracts.amm-swap-pool]
 path = "contracts_modules/alex_v1/pool/amm-swap-pool.clar"
 
@@ -1210,6 +1219,36 @@ path = "alex-dao-proposals/contracts/age011-claim-and-send-stake.clar"
 
 [contracts.agp134]
 path = "alex-dao-proposals/contracts/agp134.clar"
+
+[contracts.agp158]
+path = "alex-dao-proposals/contracts/agp158.clar"
+
+[contracts.agp159]
+path = "alex-dao-proposals/contracts/agp159.clar"
+
+[contracts.agp160]
+path = "alex-dao-proposals/contracts/agp160.clar"
+
+[contracts.agp161]
+path = "alex-dao-proposals/contracts/agp161.clar"
+
+[contracts.agp175]
+path = "alex-dao-proposals/contracts/agp175.clar"
+
+[contracts.agp176]
+path = "alex-dao-proposals/contracts/agp176.clar"
+
+[contracts.agp182]
+path = "alex-dao-proposals/contracts/agp182.clar"
+
+[contracts.agp183]
+path = "alex-dao-proposals/contracts/agp183.clar"
+
+[contracts.agp184]
+path = "alex-dao-proposals/contracts/agp184.clar"
+
+[contracts.agp188]
+path = "alex-dao-proposals/contracts/agp188.clar"
 
 
 
