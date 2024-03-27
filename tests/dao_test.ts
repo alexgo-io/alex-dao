@@ -804,7 +804,7 @@ Clarinet.test({
 });
 
 Clarinet.test({
-  name: "DAO: agp114, agp115, agp117, agp121, agp130, agp131, agp132, agp134",
+  name: "DAO: agp114, agp115, agp117, agp121, agp130, agp131, agp132, agp134, agp135, agp136 - agp178",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -836,7 +836,82 @@ Clarinet.test({
     result.expectOk();        
     
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp134");
+    result.expectOk();           
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp135");
+    result.expectOk();               
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp138");    
+    result.expectOk();                   
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp142");
+    result.expectOk();        
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp145");    
     result.expectOk();            
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp147");
+    result.expectOk();        
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp148");
+    result.expectOk();     
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp149");
+    result.expectOk();         
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp150");
+    result.expectOk();      
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp151");
+    result.expectOk();  
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp153");
+    result.expectOk();  
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp154");
+    result.expectOk();  
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp155");
+    result.expectOk();      
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp156");
+    result.expectOk();          
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp157");
+    result.expectOk();      
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp162");
+    result.expectOk();          
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp163");
+    result.expectOk();   
+    
+    // result = await DAOTest.executiveAction(deployer, deployer.address + ".agp166");
+    // result.expectOk();      
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp167");
+    result.expectOk();  
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp169");
+    result.expectOk();  
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp170");
+    result.expectOk();      
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp171");
+    result.expectOk();    
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp172");
+    result.expectOk();   
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp176");
+    result.expectOk();       
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp178");
+    result.expectOk();       
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp185");
+    result.expectOk();           
 
   },
 });

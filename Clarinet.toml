@@ -1211,6 +1211,131 @@ path = "alex-dao-proposals/contracts/age011-claim-and-send-stake.clar"
 [contracts.agp134]
 path = "alex-dao-proposals/contracts/agp134.clar"
 
+[contracts.token-susdt]
+path = "contracts_modules/alex_cloud/bridged-tokens/token-susdt.clar"
+
+# [contracts.bridge-endpoint-v1-01]
+# path = "contracts_modules/alex_cloud/bridge-endpoint-v1-01.clar"
+# clarity_version = 2
+# epoch = "2.1"
+
+[contracts.agp135]
+path = "alex-dao-proposals/contracts/agp135.clar"
+
+[contracts.agp136]
+path = "alex-dao-proposals/contracts/agp136.clar"
+
+[contracts.agp138]
+path = "alex-dao-proposals/contracts/agp138.clar"
+
+[contracts.age012-claim-and-send-stake]
+path = "alex-dao-proposals/contracts/age012-claim-and-send-stake.clar"
+
+[contracts.agp141]
+path = "alex-dao-proposals/contracts/agp141.clar"
+
+[contracts.agp142]
+path = "alex-dao-proposals/contracts/agp142.clar"
+
+[contracts.agp145]
+path = "alex-dao-proposals/contracts/agp145.clar"
+
+[contracts.agp147]
+path = "alex-dao-proposals/contracts/agp147.clar"
+
+[contracts.agp148]
+path = "alex-dao-proposals/contracts/agp148.clar"
+
+[contracts.agp149]
+path = "alex-dao-proposals/contracts/agp149.clar"
+
+[contracts.agp150]
+path = "alex-dao-proposals/contracts/agp150.clar"
+
+[contracts.agp151]
+path = "alex-dao-proposals/contracts/agp151.clar"
+
+[contracts.agp152]
+path = "alex-dao-proposals/contracts/agp152.clar"
+
+[contracts.agp153]
+path = "alex-dao-proposals/contracts/agp153.clar"
+
+[contracts.agp154]
+path = "alex-dao-proposals/contracts/agp154.clar"
+
+[contracts.agp155]
+path = "alex-dao-proposals/contracts/agp155.clar"
+
+[contracts.agp156]
+path = "alex-dao-proposals/contracts/agp156.clar"
+
+[contracts.agp157]
+path = "alex-dao-proposals/contracts/agp157.clar"
+
+[contracts.agp162]
+path = "alex-dao-proposals/contracts/agp162.clar"
+
+[contracts.agp163]
+path = "alex-dao-proposals/contracts/agp163.clar"
+
+[contracts.agp166]
+path = "alex-dao-proposals/contracts/agp166.clar"
+
+[contracts.agp167]
+path = "alex-dao-proposals/contracts/agp167.clar"
+
+[contracts.agp168]
+path = "alex-dao-proposals/contracts/agp168.clar"
+
+[contracts.agp169]
+path = "alex-dao-proposals/contracts/agp169.clar"
+
+[contracts.agp170]
+path = "alex-dao-proposals/contracts/agp170.clar"
+
+[contracts.agp171]
+path = "alex-dao-proposals/contracts/agp171.clar"
+
+[contracts.agp172]
+path = "alex-dao-proposals/contracts/agp172.clar"
+
+[contracts.agp173]
+path = "alex-dao-proposals/contracts/agp173.clar"
+
+[contracts.agp174]
+path = "alex-dao-proposals/contracts/agp174.clar"
+
+[contracts.agp176]
+path = "alex-dao-proposals/contracts/agp176.clar"
+
+[contracts.agp177]
+path = "alex-dao-proposals/contracts/agp177.clar"
+
+[contracts.agp178]
+path = "alex-dao-proposals/contracts/agp178.clar"
+
+[contracts.agp179]
+path = "alex-dao-proposals/contracts/agp179.clar"
+
+[contracts.agp180]
+path = "alex-dao-proposals/contracts/agp180.clar"
+
+[contracts.agp181]
+path = "alex-dao-proposals/contracts/agp181.clar"
+
+[contracts.agp185]
+path = "alex-dao-proposals/contracts/agp185.clar"
+
+[contracts.agp186]
+path = "alex-dao-proposals/contracts/agp186.clar"
+
+[contracts.agp187]
+path = "alex-dao-proposals/contracts/agp187.clar"
+
+[contracts.agp189]
+path = "alex-dao-proposals/contracts/agp189.clar"
+
 
 
 
