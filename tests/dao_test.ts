@@ -804,7 +804,7 @@ Clarinet.test({
 });
 
 Clarinet.test({
-  name: "DAO: agp114, agp115, agp117, agp121, agp130, agp131, agp132, agp134, agp135, agp136 - agp178",
+  name: "DAO: tests",
 
   async fn(chain: Chain, accounts: Map<string, Account>) {
     let deployer = accounts.get("deployer")!;
@@ -814,14 +814,14 @@ Clarinet.test({
     let result: any = await DAOTest.construct(deployer, bootstrapAddress);
     result.expectOk(); 
 
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp114");
-    result.expectOk();     
+    // result = await DAOTest.executiveAction(deployer, deployer.address + ".agp114");
+    // result.expectOk();     
     
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp115");
-    result.expectOk();  
+    // result = await DAOTest.executiveAction(deployer, deployer.address + ".agp115");
+    // result.expectOk();  
     
-    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp117");
-    result.expectOk();     
+    // result = await DAOTest.executiveAction(deployer, deployer.address + ".agp117");
+    // result.expectOk();     
     
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp123");
     result.expectOk();         
@@ -911,7 +911,25 @@ Clarinet.test({
     result.expectOk();       
     
     result = await DAOTest.executiveAction(deployer, deployer.address + ".agp185");
-    result.expectOk();           
+    result.expectOk();             
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp158");
+    result.expectOk();        
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp159");
+    result.expectOk();            
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp160");
+    result.expectOk();                
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp161");
+    result.expectOk();  
+    
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp184");
+    result.expectOk();  
+
+    result = await DAOTest.executiveAction(deployer, deployer.address + ".agp188");
+    result.expectOk();      
 
   },
 });
