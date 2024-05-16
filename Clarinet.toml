@@ -731,6 +731,10 @@ depends_on = ["trait-ownable", "trait-sip-010", "token-diko" ]
 path = "contracts_modules/alex_v1/auto-token/auto-alex.clar"
 depends_on = [ "trait-sip-010", "trait-ownable", "age000-governance-token", "alex-reserve-pool", "staking-helper" ]
 
+[contracts.auto-alex-v2]
+path = "contracts_modules/alex_v1/auto-token/auto-alex-v2.clar"
+depends_on = [ "trait-sip-010", "trait-ownable", "age000-governance-token", "alex-reserve-pool", "staking-helper" ]
+
 [contracts.auto-fwp-wstx-alex]
 path = "contracts_modules/alex_v1/auto-token/auto-fwp-wstx-alex.clar"
 depends_on = [ "trait-sip-010", "trait-ownable", "age000-governance-token", "fwp-wstx-alex-50-50-v1-01", "alex-reserve-pool" ]
@@ -1221,10 +1225,16 @@ path = "alex-dao-proposals/contracts/age011-claim-and-send-stake.clar"
 path = "alex-dao-proposals/contracts/agp134.clar"
 
 [contracts.token-susdt]
-path = "contracts_modules/alex_cloud/bridged-tokens/token-susdt.clar"
+path = "contracts_modules/alex_v1/bridge/bridged-tokens/token-susdt.clar"
+
+[contracts.token-slunr]
+path = "contracts_modules/alex_v1/bridge/bridged-tokens/token-slunr.clar"
+
+[contracts.token-ssko]
+path = "contracts_modules/alex_v1/bridge/bridged-tokens/token-ssko.clar"
 
 # [contracts.bridge-endpoint-v1-01]
-# path = "contracts_modules/alex_cloud/bridge-endpoint-v1-01.clar"
+# path = "contracts_modules/alex_v1/bridge/bridge-endpoint-v1-01.clar"
 # clarity_version = 2
 # epoch = "2.1"
 
@@ -1373,6 +1383,9 @@ path = "alex-dao-proposals/contracts/agp188.clar"
 
 [contracts.agp193]
 path = "alex-dao-proposals/contracts/agp193.clar"
+
+[contracts.agp200]
+path = "alex-dao-proposals/contracts/agp200.clar"
 
 
 

@@ -1,3 +1,4 @@
 [submodule "alex-dao-proposals"]
 	path = alex-dao-proposals
 	url = https://github.com/alexgo-io/alex-dao-proposals.git
+	branch = main
